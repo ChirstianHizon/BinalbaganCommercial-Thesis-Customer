@@ -1,3 +1,4 @@
+var modal;
 $(document).ready(function(){
     console.log('SCRIPT RUNNING');
 
@@ -19,6 +20,38 @@ function createPage(){
     },success: function(result){
       // console.log(result);
       document.getElementById("prodview").innerHTML=result.main;
+    },error: function(response) {
+      console.log(response);
+    }
+  });
+}
+
+
+function addtocart(clickedElement) {
+  var id = clickedElement.id;
+  var input = document.getElementById("val-"+id).value;
+  var max = document.getElementById("val-"+id).max;
+  if(input <=0){
+    document.getElementById("val-"+id).value = "1";
+    alert("Input Value Error");
+    return false;
+  }
+  $.ajax({
+    url: "php/cart.php",
+    type: "POST",
+    async: true,
+    data: {
+      "access":access,
+      "prdid":id,
+      "qty":input,
+      "type":2
+    },success: function(result){
+       console.log(result);
+       if(!result){
+         alert("Please Login to Use Services");
+       }else{
+         alert("Product Added to Cart");
+       }
     },error: function(response) {
       console.log(response);
     }

@@ -46,9 +46,9 @@ if($access == $access_web){
 
             <!-- Input Group -->
             <div class="input-group">
-              <input min="1" max="'.$value['LMAX'].'" type="number" class="form-control" value="1">
+              <input min="1" id="val-'.$value['ID'].'" max="'.$value['LMAX'].'" type="number" class="form-control" value="1">
               <span class="input-group-btn">
-                <button class="btn btn-primary" type="button">
+                <button id="'.$value['ID'].'" onclick="addtocart(this)"class="btn btn-primary" type="button">
                   <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                   Add to Cart
                 </button>
