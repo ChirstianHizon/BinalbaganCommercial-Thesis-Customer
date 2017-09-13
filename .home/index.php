@@ -9,9 +9,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">
-        <span class="glyphicon glyphicon-fire"></span>
-        LOGO
+      <a class="navbar-brand" href="index.php">
+        <!-- <span class="glyphicon glyphicon-fire"></span> -->
+        Binalbagan Commercial
       </a>
     </div>
     <!-- Navbar links -->
@@ -23,9 +23,34 @@
         <li>
           <a href="index.php?mod=products">Products</a>
         </li>
+        <!-- CART USE MODAL TO SHOW PRODUCTS -->
         <li>
-          <a href="#">Contact</a>
+          <a href="#" >My Cart</a>
         </li>
+        <script>var page =""</script>
+        <?php
+        session_start();
+        $fname = (!empty($_SESSION['userfname'])) ? $_SESSION['userfname'] : "";
+        $lname = (!empty($_SESSION['userlname'])) ? $_SESSION['userlname'] : "";
+        if(empty($_SESSION['userfname']) ||  empty($_SESSION['userlname'])){
+
+          echo '<li>
+            <a href="#" onclick="return openLogin(page)">Login / Sign up</a>
+          </li>';
+
+        }else{
+          $lname = substr($lname,0,10);
+          $fname = substr($fname,0,10);
+          echo '<li class="dropdown">'.
+                  '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'.$_SESSION['userfname'].", ".$fname.'<span class="caret"></span></a>'.
+                  '<ul class="dropdown-menu" aria-labelledby="about-us">
+                    <li><a href="#">My Account</a></li>
+                    <!-- SIGN OUT  -->
+                    <li><a href="index.php?mod=logout">Sign Out</a></li>
+                  </ul>
+                </li>';
+        }
+         ?>
       </ul>
 
     </div><!-- /.navbar-collapse -->
@@ -36,9 +61,9 @@
 <header>
   <div class="header-content">
     <div class="header-content-inner">
-      <h1>Dramatically Engage</h1>
-      <p>Objectively innovate empowered manufactured products whereas parallel platforms.</p>
-      <a href="#" class="btn btn-primary btn-lg">Engage Now</a>
+      <h1>BINALBAGAN COMMERCIAL</h1>
+      <p>Cheap, Affordable and High Quality Products available for our Valued Customers</p>
+      <a href="#" onclick="return openRegister();" class="btn btn-primary btn-lg">Register Now</a>
     </div>
   </div>
 </header>
@@ -66,7 +91,7 @@
       <div class="col-sm-6">
         <h2 class="section-header">Best in Class</h2>
         <p class="lead text-muted">Holisticly predominate extensible testing procedures for reliable supply chains. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
-        <a href="#" class="btn btn-primary btn-lg">Classify It</a>
+        <a href="#" class="btn btn-primary btn-lg">Shop Now</a>
       </div>
 
     </div>
@@ -80,7 +105,7 @@
       <div class="col-sm-6">
         <h2 class="section-header">Superior Quality</h2>
         <p class="lead text-light">Holisticly predominate extensible testing procedures for reliable supply chains. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
-        <a href="#" class="btn btn-default btn-lg">Test It</a>
+        <!-- <a href="#" class="btn btn-default btn-lg">Test It</a> -->
       </div>
       <div class="col-sm-6">
         <img class="img-responsive img-circle center-block" src="images/iphone.jpg" alt="">
@@ -89,34 +114,6 @@
     </div>
   </div>
 </section>
-
-<!-- Promos -->
-<div class="container-fluid">
-  <div class="row promo">
-    <a href="#">
-      <div class="col-md-4 promo-item item-1">
-        <h3>
-          Unleash
-        </h3>
-      </div>
-    </a>
-    <a href="#">
-      <div class="col-md-4 promo-item item-2">
-        <h3>
-          Synergize
-        </h3>
-      </div>
-    </a>
-
-    <a href="#">
-      <div class="col-md-4 promo-item item-3">
-        <h3>
-          Procrastinate
-        </h3>
-      </div>
-    </a>
-  </div>
-</div><!-- /.container-fluid -->
 
 <!-- Content 3 -->
 <section class="content content-3">
@@ -148,11 +145,10 @@
 </div>
 
 </footer>
-
-
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.easing.min.js"></script>
 
 <!-- Custom Javascript -->
 <script src="js/custom-home.js"></script>
+<script src="js/home-index.js"></script>

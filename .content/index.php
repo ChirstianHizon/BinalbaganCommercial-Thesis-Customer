@@ -12,8 +12,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">
-                	<span class="glyphicon glyphicon-fire"></span>
-                	LOGO
+                	<!-- <span class="glyphicon glyphicon-fire"></span> -->
+                	Binalbagan Commercial
                 </a>
             </div>
             <!-- Navbar links -->
@@ -26,11 +26,32 @@
                         <a href="">Products</a>
                     </li>
                     <li>
-                        <a href="#">My Account</a>
-                    </li>
-                    <li>
                         <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart</a>
                     </li>
+                    <script>var page ="?mod=products"</script>
+                    <?php
+                    session_start();
+                    $fname = (!empty($_SESSION['userfname'])) ? $_SESSION['userfname'] : "";
+                    $lname = (!empty($_SESSION['userlname'])) ? $_SESSION['userlname'] : "";
+                    if(empty($_SESSION['userfname']) ||  empty($_SESSION['userlname'])){
+                      echo '<li>
+                        <a href="#" onclick="return openLogin(page)">Login / Sign up</a>
+                      </li>';
+
+                    }else{
+                      $lname = substr($lname,0,10);
+                      $fname = substr($fname,0,10);
+                      echo '<li class="dropdown">'.
+                              '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'.$_SESSION['userfname'].", ".$fname.'<span class="caret"></span></a>'.
+                              '<ul class="dropdown-menu" aria-labelledby="about-us">
+                                <li><a href="#">My Account</a></li>
+                                <!-- SIGN OUT  -->
+                                <li><a href="index.php?mod=logout&stat=?mod=products">Sign Out</a></li>
+                              </ul>
+                            </li>';
+                    }
+                     ?>
+
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->
@@ -73,7 +94,7 @@
   					</a>
   					<div class="caption">
   						<h3>Premium Niche</h3>
-  						<p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.</p>
+  						<p>This is a very Short Description</p>
   						<p class="price">$10.45</p>
 
   						<!-- Input Group -->
@@ -99,7 +120,7 @@
   					<div class="caption">
   						<h3>Handy Holistic</h3>
   						<p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.</p>
-  						<p class="price"><s>$24.99</s> $18.99</p>
+  						<!-- <p class="price"><s>$24.99</s> $18.99</p> -->
 
   						<!-- Input Group -->
   						<div class="input-group">
@@ -200,66 +221,6 @@
 
 	<!-- Footer -->
 	<footer>
-
-		<h1 class="text-center">Find Us</h1>
-
-
-		<!-- Map -->
-		<div class="footer-map"></div>
-
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12 footer-info-item text-center">
-						<p class="lead">
-							31 Spooner Street, Quahog, Rhode Island
-						</p>
-						<h2>Contact Us</h2>
-						<p class="lead"><span class="glyphicon glyphicon-phone-alt"></span> +1(23) 456 7890<br>
-						info@example.com</p>
-					</div>
-				</div>
-			</div>
-
-		<!-- Footer Links -->
-		<div class="footer-info">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-4 footer-info-item">
-						<h3>Information</h3>
-						<ul class="list-unstyled">
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Customer Service</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-							<li><a href="#">Sitemap</a></li>
-							<li><a href="#">Orders &amp; Returns</a></li>
-						</ul>
-					</div>
-					<div class="col-sm-4 footer-info-item">
-						<h3>My Account</h3>
-						<ul class="list-unstyled">
-							<li><a href="#">Sign In</a></li>
-							<li><a href="#">View Cart</a></li>
-							<li><a href="#">My Wishlist</a></li>
-							<li><a href="#">Track My Order</a></li>
-							<li><a href="#">Help</a></li>
-						</ul>
-					</div>
-					<div class="col-sm-4 footer-info-item">
-						<h3><span class="glyphicon glyphicon-list-alt"></span> Newsletter</h3>
-						<p>Sign up for exclusive offers.</p>
-						<div class="input-group">
-							<input type="email" class="form-control" placeholder="Enter your email address">
-							<span class="input-group-btn">
-								<button class="btn btn-primary" type="button">
-									Subscribe!
-								</button>
-							</span>
-						</div>
-					</div>
-				</div><!-- /.row -->
-			</div><!-- /.container -->
-        </div>
-
         <!-- Copyright etc -->
         <div class="small-print">
         	<div class="container">
