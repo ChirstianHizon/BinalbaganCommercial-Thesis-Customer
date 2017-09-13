@@ -71,3 +71,11 @@
     color: white;
 }
 /*------------- FOR MODAL ------------------------------------*/
+
+
+.prod-view-title{
+  min-height: 40px;
+}
+.prod-view-desc{
+  min-height: 80px;
+}

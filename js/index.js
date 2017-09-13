@@ -1,6 +1,5 @@
 $(document).ready(function(){
     document.getElementById("body").style.display = "block";
-    console.log('SCRIPT RUNNING');
 });
 var modalactive= false;
 function openRegister(){

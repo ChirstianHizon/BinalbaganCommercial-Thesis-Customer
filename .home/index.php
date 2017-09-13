@@ -30,8 +30,8 @@
         <script>var page =""</script>
         <?php
         session_start();
-        $fname = (!empty($_SESSION['userfname'])) ? $_SESSION['userfname'] : "";
-        $lname = (!empty($_SESSION['userlname'])) ? $_SESSION['userlname'] : "";
+        $fname = (!empty($_SESSION['custfname'])) ? $_SESSION['custfname'] : "";
+        $lname = (!empty($_SESSION['custlname'])) ? $_SESSION['custlname'] : "";
         if(empty($_SESSION['userfname']) ||  empty($_SESSION['userlname'])){
 
           echo '<li>

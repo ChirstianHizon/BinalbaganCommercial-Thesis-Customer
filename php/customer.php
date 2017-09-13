@@ -21,7 +21,7 @@ $access = md5($access);
 if($access == $access_web){
   switch ($type) {
     case 0 :
-
+    echo json_encode(array("main" => $result));
     break;
     case 1:
     $result = $customer->createCustomerAccount($uname,$pass,$fname,$lname,$contact);
@@ -32,12 +32,12 @@ if($access == $access_web){
     foreach($login_status as $value){
       if($value['COUNT']){
         // session_start();
-        $_SESSION['login']= true;
-        $_SESSION['userid']= $value['ID'];
-        $_SESSION['username']= $value['USERNAME'];
-        $_SESSION['userfname']=$value['FNAME'];
-        $_SESSION['userlname']= $value['LNAME'];
-        echo json_encode(array("main" => "OK","status" =>  $_SESSION['login'],$_SESSION['userfname']));
+        $_SESSION['custlogin']= true;
+        $_SESSION['custid']= $value['ID'];
+        $_SESSION['custname']= $value['USERNAME'];
+        $_SESSION['custfname']=$value['FNAME'];
+        $_SESSION['custlname']= $value['LNAME'];
+        echo json_encode(array("main" => "OK","status" =>  $_SESSION['custlogin'],$_SESSION['custfname']));
       }else{
         echo json_encode(array("main" => "OK","status" => false));
       }

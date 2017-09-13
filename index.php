@@ -5,7 +5,7 @@
   if($module == 'logout'){
     session_start();
     $_SESSION = [];
-    $_SESSION['login']= false;
+    $_SESSION['custlogin']= false;
     session_destroy();
     header("location: index.php".$stat);
   }

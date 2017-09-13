@@ -31,9 +31,9 @@
                     <script>var page ="?mod=products"</script>
                     <?php
                     session_start();
-                    $fname = (!empty($_SESSION['userfname'])) ? $_SESSION['userfname'] : "";
-                    $lname = (!empty($_SESSION['userlname'])) ? $_SESSION['userlname'] : "";
-                    if(empty($_SESSION['userfname']) ||  empty($_SESSION['userlname'])){
+                    $fname = (!empty($_SESSION['custfname'])) ? $_SESSION['custfname'] : "";
+                    $lname = (!empty($_SESSION['custlname'])) ? $_SESSION['custlname'] : "";
+                    if(empty($_SESSION['custfname']) ||  empty($_SESSION['custlname'])){
                       echo '<li>
                         <a href="#" onclick="return openLogin(page)">Login / Sign up</a>
                       </li>';
@@ -42,7 +42,7 @@
                       $lname = substr($lname,0,10);
                       $fname = substr($fname,0,10);
                       echo '<li class="dropdown">'.
-                              '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'.$_SESSION['userfname'].", ".$fname.'<span class="caret"></span></a>'.
+                              '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'.$lname.", ".$fname.'<span class="caret"></span></a>'.
                               '<ul class="dropdown-menu" aria-labelledby="about-us">
                                 <li><a href="#">My Account</a></li>
                                 <!-- SIGN OUT  -->
@@ -84,132 +84,9 @@
     <!-- Featured Products -->
   	<div class="container">
   		<h1 class="text-center">World Class Products</h1>
-  		<div class="row">
+  		<div id="prodview" class="row">
 
-  			<!-- Product 1 -->
-  			<div class="col-sm-6 col-md-3">
-  				<div class="thumbnail featured-product">
-  					<a href="#">
-  						<img src="images/pepper.jpg" alt="">
-  					</a>
-  					<div class="caption">
-  						<h3>Premium Niche</h3>
-  						<p>This is a very Short Description</p>
-  						<p class="price">$10.45</p>
 
-  						<!-- Input Group -->
-  						<div class="input-group">
-  							<input type="number" class="form-control" value="1">
-  							<span class="input-group-btn">
-  								<button class="btn btn-primary" type="button">
-  									<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-  									Add to Cart
-  								</button>
-  							</span>
-  						</div>
-  					</div>
-  				</div>
-  			</div>
-
-  			<!-- Product 2 -->
-  			<div class="col-sm-6 col-md-3">
-  				<div class="thumbnail featured-product">
-  					<a href="#">
-  						<img src="images/jars.jpg" alt="">
-  					</a>
-  					<div class="caption">
-  						<h3>Handy Holistic</h3>
-  						<p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.</p>
-  						<!-- <p class="price"><s>$24.99</s> $18.99</p> -->
-
-  						<!-- Input Group -->
-  						<div class="input-group">
-  							<input type="number" class="form-control" value="1">
-  							<span class="input-group-btn">
-  								<button class="btn btn-primary" type="button">
-  									<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-  									Add to Cart
-  								</button>
-  							</span>
-  						</div>
-  					</div>
-  				</div>
-  			</div>
-
-  			<!-- Product 3 -->
-  			<div class="col-sm-6 col-md-3">
-  				<div class="thumbnail featured-product">
-  					<a href="#">
-  						<img src="images/pot.jpg" alt="">
-  					</a>
-  					<div class="caption">
-  						<h3>Seamless Strategic</h3>
-  						<p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.</p>
-  						<p class="price">$11.50</p>
-
-  						<!-- Input Group -->
-  						<div class="input-group">
-  							<input type="number" class="form-control" value="1">
-  							<span class="input-group-btn">
-  								<button class="btn btn-primary" type="button">
-  									<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-  									Add to Cart
-  								</button>
-  							</span>
-  						</div>
-  					</div>
-  				</div>
-  			</div>
-
-  			<!-- Product 4 -->
-  			<div class="col-sm-6 col-md-3">
-  				<div class="thumbnail featured-product">
-  					<a href="#">
-  						<img src="images/teapot.jpg" alt="">
-  					</a>
-  					<div class="caption">
-  						<h3>Maintained Strip</h3>
-  						<p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.</p>
-  						<p class="price">$45.50</p>
-
-  						<!-- Input Group -->
-  						<div class="input-group">
-  							<input type="number" class="form-control" value="1">
-  							<span class="input-group-btn">
-  								<button class="btn btn-primary" type="button">
-  									<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-  									Add to Cart
-  								</button>
-  							</span>
-  						</div>
-  					</div>
-  				</div>
-  			</div>
-
-        <!-- Product 4 -->
-        <div class="col-sm-6 col-md-3">
-          <div class="thumbnail featured-product">
-            <a href="#">
-              <img src="images/teapot.jpg" alt="">
-            </a>
-            <div class="caption">
-              <h3>Maintained Strip</h3>
-              <p>Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip.</p>
-              <p class="price">$45.50</p>
-
-              <!-- Input Group -->
-              <div class="input-group">
-                <input type="number" class="form-control" value="1">
-                <span class="input-group-btn">
-                  <button class="btn btn-primary" type="button">
-                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-                    Add to Cart
-                  </button>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
 
 
   		</div>
@@ -235,3 +112,4 @@
     <script src="js/jquery-1.11.3.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	  <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/content-index.js"></script>
