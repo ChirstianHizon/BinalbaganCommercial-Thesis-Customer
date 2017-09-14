@@ -14,7 +14,7 @@ public $db;
   }
 
   public function getCart($userid){
-    $sql = "SELECT * FROM (tbl_cart INNER JOIN tbl_product ON tbl_cart.prd_id = tbl_product.prd_id) WHERE emp_id ='$userid'";
+    $sql = "SELECT * FROM (tbl_cart INNER JOIN tbl_product ON tbl_cart.prd_id = tbl_product.prd_id) WHERE cust_id ='$userid'";
     $result = mysqli_query($this->db,$sql);
     if($result){
       while($row = mysqli_fetch_assoc($result)){
@@ -80,6 +80,47 @@ public $db;
     }else {
       return $list;
     }
+  }
+
+  public function getCustomerCart($custid){
+    $sql = "SELECT
+      cart_id AS ID,
+      prd_name AS NAME,
+      cart_prd_qty AS QTY,
+      SUM(cart_prd_qty * prd_price) AS SUBTOTAL
+      FROM tbl_cart
+      INNER JOIN tbl_product ON tbl_product.prd_id = tbl_cart.prd_id
+      WHERE cust_id = '$custid'
+      GROUP BY cart_id
+    ";
+
+    $result = mysqli_query($this->db,$sql);
+    if($result){
+      while($row = mysqli_fetch_assoc($result)){
+        $list[] = $row;
+      }
+      if(empty($list)){return false;}
+      return $list;
+    }else {
+      return $sql;
+    }
+  }
+
+
+  public function deleteCart($id,$userid){
+    $sql = "DELETE  FROM tbl_cart
+    WHERE cart_id = '$id' AND cust_id = '$userid'";
+    $result = mysqli_query($this->db,$sql) or die(mysqli_error() . "CLASS ERROR");
+    if($result == true){$result = "DELETE COMPLETE";}
+    return $result;
+  }
+
+  public function deleteALLCart($userid){
+    $sql = "DELETE  FROM tbl_cart
+    WHERE cust_id = '$userid'";
+    $result = mysqli_query($this->db,$sql) or die(mysqli_error() . "CLASS ERROR");
+    if($result == true){$result = "DELETE COMPLETE";}
+    return $result;
   }
 
 }

@@ -24,6 +24,11 @@ if($access == $access_web){
     echo json_encode(array("main" => $result));
     break;
     case 1:
+    $uname =$customer->str_insert($uname, "'", "'");
+    $pass =$customer->str_insert($pass, "'", "'");
+    $fname =$customer->str_insert($fname, "'", "'");
+    $lname =$customer->str_insert($lname, "'", "'");
+    $contact =$customer->str_insert($contact, "'", "'");
     $result = $customer->createCustomerAccount($uname,$pass,$fname,$lname,$contact);
     echo json_encode(array("main" => $result));
     break;

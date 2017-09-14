@@ -24,7 +24,7 @@ if($access == $access_web){
     $html = "";
     $list = $products->createPage((int)$limit,(int)$lastprd,$search);
     if(!$list){
-      echo json_encode(array("main" => "NO PRODUCTS FOUND","COUNT"=>0));
+      echo json_encode(array("main" => '<div id="noprod-container"><b id="noprod">NO PRODUCTS FOUND</b></div>',"COUNT"=>0));
       break;
     }
     foreach($list as $value){
@@ -33,7 +33,7 @@ if($access == $access_web){
         <div class="thumbnail featured-product">
           <a href="#">
           <br/>
-            <img src="'.$value['IMAGE'].'" alt="">
+            <img src="'.$value['IMAGE'].'" id="product-image" alt="">
           </a>
           <div class="caption">
             <div  class="prod-view-title">

@@ -1,6 +1,20 @@
+var modal,carttb;
 $(document).ready(function(){
-    document.getElementById("body").style.display = "block";
+  document.getElementById("body").style.display = "block";
+
+  carttb = $('#cart_id').DataTable({
+    "responsive": true,
+    "bLengthChange": false,
+    "bInfo" : false,
+    "bFilter": false,
+    "pageLength": 10
+  });
+
 });
+
+
+
+
 var modalactive= false;
 function openRegister(){
   if(modalactive == true){
@@ -9,6 +23,15 @@ function openRegister(){
   modalactive = true;
   document.getElementById("register-form").reset();
   modal = document.getElementById('register-modal');
+  openModal();
+  return false;
+}
+function openTypePicker(clickedElement){
+  if(modalactive == true){
+    closeModal();
+  }
+  modalactive = true;
+  modal = document.getElementById('type-modal');
   openModal();
   return false;
 }
@@ -23,7 +46,24 @@ function openLogin(pge){
   openModal();
   return false;
 }
+function openMyCart(){
+  if(modalactive == true){
+    closeModal();
+  }
+  modalactive = true;
+  modal = document.getElementById('cart-modal');
+  getUserCart();
+  return false;
+}
 
+
+
+
+
+function typeChoose(clickedElement) {
+  var type = clickedElement.id;
+  Checkout(type);
+}
 
 // -------------------------------- FORMS -------------------------------------//
 function login() {
@@ -96,6 +136,87 @@ function register() {
   });
   return false;
 }
+
+function getUserCart(){
+  $.ajax({
+    url: "php/cart.php",
+    type: "POST",
+    async: true,
+    dataType: "json",
+    data: {
+      "access":access,
+      "type":1
+    },success: function(result){
+      console.log(result);
+      if(!result.cust){
+        closeModal();
+        alert("Login To View Items on Cart");
+      }else{
+        carttb.destroy();
+        document.getElementById("cart-body").innerHTML=result.main;
+        document.getElementById("cart-total").innerHTML=" "+result.total;
+        carttb = $('#cart_id').DataTable({
+          "responsive": true,
+          "bLengthChange": false,
+          "bInfo" : false,
+          "bFilter": false,
+          "bSort":false,
+          "pageLength": 5
+        });
+        openModal();
+      }
+    },error: function(response) {
+      console.log(response);
+    }
+  });
+  return false;
+}
+
+
+function Checkout(type){
+  $.ajax({
+    url: "php/cart.php",
+    type: "POST",
+    async: true,
+    dataType: "json",
+    data: {
+      "access":access,
+      "order":type,
+      "type":3
+    },success: function(result){
+      console.log(result);
+      if(result.main){
+        closeModal();
+        alert("Product Purchased");
+      }
+    },error: function(response) {
+      console.log(response);
+    }
+  });
+  return false;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

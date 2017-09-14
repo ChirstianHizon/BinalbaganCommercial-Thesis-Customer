@@ -12,6 +12,10 @@ h6 {
 	color: #dd845a;
 	}
 
+	.modal h2{
+		color:#FFF;
+	}
+
 .feature {
 	background: url('../images/light_bulb.jpg');
 	background-position: top right;

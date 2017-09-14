@@ -1,81 +1,84 @@
-/* MODAL LAYOUT*/
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 999999 ; /* Sit on top */
-    padding-top: 50px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: scroll;/* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+body{
+
 }
-
-
-.modal-content {
-    position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 0;
-    border: 1px solid #888;
-    width: 40%;
-    min-width: 300px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s
-}
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
-
-/* The Close Button */
-.close {
-    color: white;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    margin-right: 20px;
-    margin-top: 10px;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.modal-header {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
-}
-
-
-.modal-body {padding: 20px;padding-bottom: 0;}
-
-/* Modal Footer */
-.modal-footer {
-    color: white;
-}
-/*------------- FOR MODAL ------------------------------------*/
-
-
 .prod-view-title{
   min-height: 40px;
+
 }
 .prod-view-desc{
-  min-height: 80px;
+  min-height: 140px;
+}
+
+#checkout{
+  width: 100%;
+  font-size: 18px;
+  height: 50px;
+}
+#checkout:hover{
+  color:black;
+}
+#searchbar{
+  width: 100%;
+  font-size: 34px;
+}
+#searchcontainer{
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-top: 50px;
+}
+#prodview{
+  min-height: 300px;
+}
+#noprod{
+  padding-top: 10%;
+}
+#noprod-container{
+  width: 100%;
+  text-align: center;
+}
+
+#cart_id_wrapper{
+  /*border: 2px solid grey;*/
+}
+
+.sorting, .sorting_asc, .sorting_desc {
+    background : none;
+}
+.paginate_button{
+  font-size: 12px;
+}
+#row_1{
+  text-align: left;
+}
+.btntype{
+  width: 100%;
+  font-size: 20px;
+  height: 80px;
+  margin: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+table{
+  font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+}
+thead{
+  font-size: 14px;
+  text-align: center;
+}
+tbody{
+  color:black;
+  font-size: 12px;
+  text-align: center;
+}
+
+.separator{
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.title-sep{
+  width: 100%;
+
+  text-align: center;
+  /*background-color: gray;*/
 }

@@ -25,15 +25,16 @@
         </li>
         <!-- CART USE MODAL TO SHOW PRODUCTS -->
         <li>
-          <a href="#" >My Cart</a>
+            <a href="#" onclick="return openMyCart();"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart</a>
         </li>
         <script>var page =""</script>
         <?php
         session_start();
         $fname = (!empty($_SESSION['custfname'])) ? $_SESSION['custfname'] : "";
         $lname = (!empty($_SESSION['custlname'])) ? $_SESSION['custlname'] : "";
-        if(empty($_SESSION['userfname']) ||  empty($_SESSION['userlname'])){
 
+        $loginstat = (!empty($_SESSION['custlogin'])) ? $_SESSION['custlogin'] : false;
+        if(!$loginstat){
           echo '<li>
             <a href="#" onclick="return openLogin(page)">Login / Sign up</a>
           </li>';
@@ -44,7 +45,7 @@
           echo '<li class="dropdown">'.
                   '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'.$lname.", ".$fname.'<span class="caret"></span></a>'.
                   '<ul class="dropdown-menu" aria-labelledby="about-us">
-                    <li><a href="#">My Account</a></li>
+                    <li><a href="index.php?mod=account">My Account</a></li>
                     <!-- SIGN OUT  -->
                     <li><a href="index.php?mod=logout">Sign Out</a></li>
                   </ul>
@@ -74,8 +75,12 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2">
         <span class="glyphicon glyphicon-apple" style="font-size: 60px"></span>
-        <h2 class="section-heading">Completely synergize resource taxing relationships</h2>
-        <p class="text-light">Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
+        <h2 class="section-heading">About Us</h2>
+        <p class="text-light">
+Binalbagan Commercial is a single proprietor establishment located in the Municipality of Binalbagan. It is owned by Raul F. Davis. The Company is managed by Mrs. Janet T. Davis.
+We have already been serving the people of Binalbagan for almost 20 years with passion and quality service.
+
+        </p>
       </div>
     </div>
   </div>
@@ -86,12 +91,14 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <img class="img-responsive img-circle center-block" src="images/microphone.jpg" alt="">
+        <img class="img-responsive img-circle center-block" src="images/screw.jpg" alt="">
       </div>
       <div class="col-sm-6">
-        <h2 class="section-header">Best in Class</h2>
-        <p class="lead text-muted">Holisticly predominate extensible testing procedures for reliable supply chains. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
-        <a href="#" class="btn btn-primary btn-lg">Shop Now</a>
+        <h2 class="section-header">Quality Products</h2>
+        <p class="lead text-muted">
+          Products sold at Binalbagan Commercial are ensured to be of Top Quality. We also ensure that all products sold came from well known brands.
+        </p>
+        <a href="index.php?mod=products" class="btn btn-primary btn-lg">Shop Now</a>
       </div>
 
     </div>
@@ -103,12 +110,12 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <h2 class="section-header">Superior Quality</h2>
-        <p class="lead text-light">Holisticly predominate extensible testing procedures for reliable supply chains. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
+        <h2 class="section-header">Excellent Customer Service</h2>
+        <p class="lead text-light">As one of the oldest Hardware Store in Binalbagan were are sure to have the knowldege on the products we sell. As we are here not just to sell but to help you find the products for you.</p>
         <!-- <a href="#" class="btn btn-default btn-lg">Test It</a> -->
       </div>
       <div class="col-sm-6">
-        <img class="img-responsive img-circle center-block" src="images/iphone.jpg" alt="">
+        <img class="img-responsive img-circle center-block" src="images/hardstore.jpg" alt="">
       </div>
 
     </div>
@@ -116,13 +123,13 @@
 </section>
 
 <!-- Content 3 -->
-<section class="content content-3">
+<!-- <section class="content content-3">
   <div class="container">
     <h2 class="section-header"><span class="glyphicon glyphicon-pushpin text-primary"></span><br> Sanity Check</h2>
     <p class="lead text-muted">Holisticly predominate extensible testing procedures for reliable supply chains. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
     <a href="#" class="btn btn-primary btn-lg">Check Now</a>
   </div>
-</div>
+</div> -->
 </section>
 
 <!-- Footer -->
@@ -132,15 +139,15 @@
 <div class="contact">
   <div class="container">
     <h2 class="section-heading">Contact Us</h2>
-    <p><span class="glyphicon glyphicon-earphone"></span><br> +1(23) 456 7890</p>
-    <p><span class="glyphicon glyphicon-envelope"></span><br> info@example.com</p>
+    <p><span class="glyphicon glyphicon-earphone"></span><br> (+63) 441 1643</p>
+    <p><span class="glyphicon glyphicon-envelope"></span><br> BinalbaganCommercial@000webhostapp.com</p>
   </div>
 </div>
 
 <!-- Copyright etc -->
 <div class="small-print">
   <div class="container">
-    <p>Copyright &copy; Example.com 2015</p>
+    <p>Copyright &copy; BinalbaganCommercial@000webhostapp.com 2017</p>
   </div>
 </div>
 
@@ -152,3 +159,5 @@
 <!-- Custom Javascript -->
 <script src="js/custom-home.js"></script>
 <script src="js/home-index.js"></script>
+
+<script type="text/javascript" src="api/DataTables/datatables.min.js"></script>

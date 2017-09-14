@@ -6,10 +6,11 @@
     session_start();
     $_SESSION = [];
     $_SESSION['custlogin']= false;
-    session_destroy();
+    // session_destroy();
     header("location: index.php".$stat);
   }
  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,11 +57,22 @@
       case 'products':
         require_once '.content/index.php';
         break;
+      case 'account':
+        require_once '.content/index.php';
+        break;
     }
    ?>
+   <link rel="stylesheet" type="text/css" href="api/DataTables/datatables.min.css"/>
+
+   <link href="css/login.css" rel="stylesheet">
 
    <div id="login-modal" class="modal">
      <!-- Modal content -->
+     <?php
+    //  $fname = (!empty($_SESSION['custfname'])) ? $_SESSION['custfname'] : "";
+    //   echo '<script> alert("'.$fname.'"); </script>'
+      ?>
+
      <div class="modal-content">
        <span onclick="closeModal()" class="close">&times;</span>
        <div class="modal-header">
@@ -69,10 +81,17 @@
        </div>
        <div class="modal-body">
          <form id="login-form" onsubmit="return login();">
+             Username:
              <input type="text" name="fname" id="log_uname" placeholder="Username" required/>
+             <br/>
+             Password:
              <input type="password" name="pass" id="log_upass" placeholder="Password" required/>
+             <br/>
+             <br/>
+
              <input id="submit" type="submit" value="Login"/>
          </form>
+         <br/>
          Don't Have an Account? <a href="#" onclick="return openRegister()">Sign up</a>
          <br/>
        </div>
@@ -85,20 +104,25 @@
        <span onclick="closeModal()" class="close">&times;</span>
        <div class="modal-header">
 
-         <h2>Register</h2>
+         <h2>Sign up</h2>
        </div>
        <div class="modal-body">
          <b id="reg-status"></b>
          <form id="register-form" onsubmit="return register();">
+             Username:
              <input type="text" name="uname" id="uname" placeholder="Username" required/>
+             Password:
              <input type="password" name="upass" id="upass" placeholder="Password" required/>
+             Re-enter Password:
              <input type="password" name="repass" id="repass" placeholder="Re enter Password" required/>
 
+             First Name:
              <input type="text" name="fname" id="fname" placeholder="First Name" required/>
+             Last Name:
              <input type="text" name="lname" id="lname" placeholder="Last Name" required/>
-
+             Contact Number:
              <input type="number" name="c" id="contact" placeholder="Contact Number" required/>
-
+             </br>
              <input id="submit" type="submit" value="Register"/>
          </form>
          <br/>
@@ -107,7 +131,60 @@
    </div>
 
 
+   <div id="cart-modal" class="modal">
+     <!-- Modal content -->
+     <div class="modal-content">
+       <span onclick="closeModal()" class="close">&times;</span>
+       <div class="modal-header">
+
+         <h2>My Cart</h2>
+       </div>
+       <div class="modal-body">
+         <b id="cart-status"></b>
+         <table id="cart_id" class="display" width="100%" cellspacing="0">
+           <thead>
+               <tr>
+                   <th>Product</th>
+                   <th>Quantity</th>
+                   <th>Subtotal</th>
+                   <th></th>
+               </tr>
+           </thead>
+           <tbody id="cart-body">
+           </tbody>
+         </table>
+         <br/>
+         <br/>
+         Cart Total Amount: P<b id="cart-total"></b>
+         <br/>
+       </div>
+       <div class = "modal-footer">
+         <button id="checkout"onclick="openTypePicker()"> Checkout </button>
+       </div>
+     </div>
+   </div>
+
+   <div id="type-modal" class="modal">
+     <!-- Modal content -->
+     <div class="modal-content">
+       <span onclick="closeModal()" class="close">&times;</span>
+       <div class="modal-header">
+
+         <h2>My Cart</h2>
+       </div>
+       <div class="modal-body">
+         Choose how to recieve Product:
+         <br/>
+        <button class="btntype" onclick="typeChoose(this)" id="1"> Delivery </button>
+        <br/>
+        <button class="btntype" onclick="typeChoose(this)" id="0"> Pickup </button>
+       </div>
+     </div>
+   </div>
+
+
    <script src="js/index.js"></script>
+   <script type="text/javascript" src="api/DataTables/datatables.min.js"></script>
 </body>
 
 </html>
