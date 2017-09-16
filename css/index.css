@@ -1,5 +1,31 @@
-body{
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
 
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% .5%;
+}
+.col:first-child { margin-left: 0; }
+
+/*  GROUPING  */
+.group:before,
+.group:after { content:""; display:table; }
+.group:after { clear:both;}
+.group { zoom:1; /* For IE 6/7 */ }
+
+
+
+
+.sorting,
+.sorting_asc,
+.sorting_desc{
+  background-image: none!important;
 }
 .prod-view-title{
   min-height: 40px;
@@ -10,23 +36,16 @@ body{
 }
 
 #checkout{
-  width: 100%;
-  font-size: 18px;
-  height: 50px;
-  color:black;
-}
+  width: 100%;height: 50px;color:black;font-size: 18px;
+  }
 #checkout:hover{
   color:black;
 }
 #searchbar{
-  width: 100%;
-  font-size: 34px;
-}
-#searchcontainer{
-  padding-left: 5%;
-  padding-right: 5%;
-  margin-top: 50px;
-}
+  width: 100%;font-size: 34px;
+  }
+#searchcontainer{margin-top: 50px;padding-right: 5%;padding-left: 5%;
+  }
 #prodview{
   min-height: 300px;
 }
@@ -34,9 +53,8 @@ body{
   padding-top: 10%;
 }
 #noprod-container{
-  width: 100%;
-  text-align: center;
-}
+  width: 100%;text-align: center;
+  }
 
 #cart_id_wrapper{
   /*border: 2px solid grey;*/
@@ -52,35 +70,24 @@ body{
   text-align: left;
 }
 .btntype{
-  width: 100%;
-  font-size: 20px;
-  height: 80px;
-  margin: 10px;
-  margin-left: 0px;
-  margin-right: 0px;
-}
+  width: 100%;height: 80px;margin: 10px;margin-right: 0px;margin-left: 0px;font-size: 20px;
+  }
 table{
   font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
 }
-thead{
-  font-size: 14px;
-  text-align: center;
-}
-tbody{
-  color:black;
-  font-size: 12px;
-  text-align: center;
-}
+thead{text-align: center;font-size: 14px;
+
+  }
+tbody{text-align: center;color:black;font-size: 12px;
+
+  }
 
 .separator{
-  padding: 10px;
-  border: 1px solid black;
-  border-radius: 5px;
-}
+  padding: 10px;border: 1px solid black;border-radius: 5px;
+  }
 .title-sep{
-  width: 100%;
+  width: 100%;text-align: center;
 
-  text-align: center;
   /*background-color: gray;*/
 }
 

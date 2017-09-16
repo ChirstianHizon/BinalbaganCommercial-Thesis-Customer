@@ -58,11 +58,11 @@ if($access == $access_web){
       }
       $html = $html.'<tr>'.
                 '<td>'.$value['ID'].'</td>'.
+                '<td>'.$value['ODATE'].'</td>'.
                 '<td>'.$value['QTY'].'</td>'.
-                '<td>'.$value['TOTAL'].'</td>'.
+                '<td>P '.number_format($value['TOTAL'],2).'</td>'.
                 '<td>'.$stat.'</td>'.
                 '<td>'.$otype.'</td>'.
-                '<td>'.$value['ODATE'].'</td>'.
                 '<td><button id="'.$value['ID'].'" onclick="return vieworder(this)"> View</button></td>'.
             "</tr>";
       }

@@ -4,7 +4,7 @@
   $stat = (isset($_GET['stat']) && $_GET['stat'] != '') ? $_GET['stat'] : '';
   if($module == 'logout'){
     session_start();
-    $_SESSION = [];
+    // $_SESSION = [];
     $_SESSION['custlogin']= false;
     // session_destroy();
     header("location: index.php".$stat);
@@ -40,6 +40,9 @@
         echo '<link href="css/home-index.css" rel="stylesheet">';
         break;
       case 'products':
+        echo '<link href="css/custom-content.css" rel="stylesheet">';
+        break;
+      case 'account':
         echo '<link href="css/custom-content.css" rel="stylesheet">';
         break;
     }
@@ -176,7 +179,7 @@
          Choose how to recieve Product:
          <br/>
         <button id="btndelivery" class="btntype" onclick="typeChoose(this)" id="1"> Delivery </button>
-        
+
         <button class="btntype" onclick="typeChoose(this)" id="0"> Pickup </button>
        </div>
      </div>

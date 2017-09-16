@@ -1,5 +1,6 @@
 body {
 	padding-top: 50px;    /* Padding for .navbar-fixed-top. Change value if navbar height changes. Remove if using .navbar-static-top. */
+
 	color: #959595;
 	}
 
@@ -17,11 +18,11 @@ h6 {
 	}
 
 .feature {
+	color: white;
 	background: url('../images/light_bulb.jpg');
+	background-color: #dd845a;
 	background-position: top right;
 	background-size: cover;
-	background-color: #dd845a;
-	color: white;
 	text-shadow: 1px 1px 8px black;
 	}
 
@@ -30,12 +31,13 @@ h6 {
 	}
 
 .promo, .footer-map {
+	margin-top: 20px;
+	margin-bottom: 20px;
+
 	border-width: 1px;
 	border-color: black;
 	border-top-style: solid;
 	border-bottom-style: solid;
-	margin-top: 20px;
-	margin-bottom: 20px;
 	}
 
 .promo,
@@ -44,27 +46,33 @@ h6 {
 .promo a:visited,
 .promo a:hover,
 .promo a:active {
+    text-decoration: none;
+
     color: white;
 	text-shadow: 1px 1px 8px black;
-    text-decoration: none;
 }
 
 .promo-item {
     height: 200px;
-    line-height: 180px;
+
     text-align: center;
+
+    line-height: 180px;
 }
 
 .promo-item:hover {
-    background-size: 110%;
     border: 5px solid black;
+    background-size: 110%;
+
     line-height: 170px;
 }
 
 .promo-item h3 {
-    font-size: 40px;
     display: inline-block;
+
     vertical-align: middle;
+
+    font-size: 40px;
 }
 
 .item-1 {
@@ -82,8 +90,8 @@ h6 {
 .item-1,
 .item-2,
 .item-3 {
-	background-size: cover;
 	background-position: 50% 50%;
+	background-size: cover;
 	}
 
 .featured-product > img,
@@ -93,28 +101,33 @@ h6 {
 
 .featured-product h3 {
 	color: #dd845a;
+
 	font-size: 18px;
 	}
 
 .featured-product .price {
 	color: #dd845a;
+
 	font-size: 18px;
 	}
 
 .featured-product .price s {
 	color: #999;
+
 	font-size: 18px;
 	}
 
 .footer-map {
-	height: 300px;
 	width: 100%;
+	height: 300px;
+
+	border-color: #ccc;
 	background: url('../images/map.jpg');
 	background-size: cover;
-	border-color: #ccc;
 	}
 .footer-info {
     padding: 20px 0;
+
     background: #f7f7f7;
 }
 
@@ -128,6 +141,7 @@ h6 {
 
 .footer-info h3 {
 	color: black;
+
 	font-size: 18px;
 	}
 
@@ -136,9 +150,11 @@ h6 {
     }
 
 footer .small-print {
-	background-color: #fff;
 	padding: 30px 0;
+
 	text-align: center;
+
+	background-color: #fff;
 }
 
 
@@ -150,13 +166,15 @@ Override Bootstrap Classes
 
 /* Links */
 a {
-  color: orange;
   text-decoration: none;
+
+  color: orange;
 }
 a:hover,
 a:focus {
-  color: darkorange;
   text-decoration: underline;
+
+  color: darkorange;
 }
 
 /* Navbar */
@@ -175,26 +193,26 @@ a:focus {
 /* Primary Buttons */
 .btn-primary {
   color: #fff;
-  background-color: orange;
   border-color: orange;
+  background-color: orange;
 }
 .btn-primary:focus,
 .btn-primary.focus {
   color: #fff;
-  background-color: darkorange;
   border-color: darkorange;
+  background-color: darkorange;
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: darkorange;
   border-color: darkorange;
+  background-color: darkorange;
 }
 .btn-primary:active,
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
   color: #fff;
-  background-color: darkorange;
   border-color: darkorange;
+  background-color: darkorange;
 }
 .btn-primary:active:hover,
 .btn-primary.active:hover,
@@ -206,8 +224,8 @@ a:focus {
 .btn-primary.active.focus,
 .open > .dropdown-toggle.btn-primary.focus {
   color: #fff;
-  background-color: darkorange;
   border-color: darkorange;
+  background-color: darkorange;
 }
 
 .btn-primary.disabled,
@@ -228,6 +246,6 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-  background-color: sandybrown;
   border-color: sandybrown;
+  background-color: sandybrown;
 }

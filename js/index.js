@@ -189,7 +189,6 @@ function getUserCart(){
           "bLengthChange": false,
           "bInfo" : false,
           "bFilter": false,
-          "bSort":false,
           "pageLength": 5
         });
         openModal();
