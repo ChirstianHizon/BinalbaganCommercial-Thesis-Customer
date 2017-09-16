@@ -73,7 +73,10 @@ if($access == $access_web){
         }
         $stat = $cart->deleteALLCart($custid);
         echo json_encode(array("main" => true,"cust"=>$custid));
-
+        break;
+        case 4:
+          $result = $cart->deleteCart($id,$custid);
+          echo json_encode(array("main" => $result,"cust"=>$custid));
         break;
 
 

@@ -175,8 +175,8 @@
        <div class="modal-body">
          Choose how to recieve Product:
          <br/>
-        <button class="btntype" onclick="typeChoose(this)" id="1"> Delivery </button>
-        <br/>
+        <button id="btndelivery" class="btntype" onclick="typeChoose(this)" id="1"> Delivery </button>
+        
         <button class="btntype" onclick="typeChoose(this)" id="0"> Pickup </button>
        </div>
      </div>

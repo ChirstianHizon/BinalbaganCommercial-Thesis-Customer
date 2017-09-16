@@ -14,6 +14,7 @@
               <th>Quantity</th>
               <th>Total</th>
               <th>Status</th>
+              <th>Type</th>
               <th>Order Date</th>
               <th></th>
           </tr>
@@ -21,12 +22,12 @@
       <tbody id="order-body">
       </tbody>
     </table>
-    <h4>Total Orders Made: <b>0</b></h4>
-    <h4>Last Order Made: <b>Monday, January 1, 1991</b></h4>
+    <h4>Total Orders Made: <b id="order-total">0</b></h4>
   </div>
   <br/>
   <br/>
   <div class="separator">
+    Account Details
 
   </div>
 </div>

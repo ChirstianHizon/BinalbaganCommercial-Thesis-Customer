@@ -111,7 +111,7 @@ We have already been serving the people of Binalbagan for almost 20 years with p
     <div class="row">
       <div class="col-sm-6">
         <h2 class="section-header">Excellent Customer Service</h2>
-        <p class="lead text-light">As one of the oldest Hardware Store in Binalbagan were are sure to have the knowldege on the products we sell. As we are here not just to sell but to help you find the products for you.</p>
+        <p class="lead text-light">As one of the oldest Hardware Stores in Binalbagan we are sure to have knowldege on the products we sell. As we are not just here to sell but to help you find the products for you.</p>
         <!-- <a href="#" class="btn btn-default btn-lg">Test It</a> -->
       </div>
       <div class="col-sm-6">

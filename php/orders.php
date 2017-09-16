@@ -24,7 +24,49 @@ if($access == $access_web){
       # code...
       break;
     case 1:
+      $html="";
+      $count=0;
+      $total=0;
+      $list = $order->getOrderList($custid);
+      if(!$list){echo json_encode(array("main" => "","total"=> 0,"cust"=>true));break;}
+      foreach($list as $value){
+      $count++;
+      $total = $total += $value['TOTAL'];
 
+      switch ($value['OSTAT']) {
+        case 0:
+        $stat = "Pending";
+          break;
+        case 1:
+          $stat = "Approved";
+          break;
+        case 2:
+          $stat="Declined";
+          break;
+        case 100:
+          $stat = "Completed";
+          break;
+      }
+
+      switch ($value['OTYPE']) {
+        case 0:
+        $otype = "Pickup";
+          break;
+        case 1:
+        $otype = "Delivery";
+          break;
+      }
+      $html = $html.'<tr>'.
+                '<td>'.$value['ID'].'</td>'.
+                '<td>'.$value['QTY'].'</td>'.
+                '<td>'.$value['TOTAL'].'</td>'.
+                '<td>'.$stat.'</td>'.
+                '<td>'.$otype.'</td>'.
+                '<td>'.$value['ODATE'].'</td>'.
+                '<td><button id="'.$value['ID'].'" onclick="return vieworder(this)"> View</button></td>'.
+            "</tr>";
+      }
+      echo json_encode(array("main" => $html,"count"=> $count,"total"=>$total,"cust"=>true));
       break;
     default:
       echo json_encode(array("main" => "TYPE ERROR"));

@@ -13,6 +13,7 @@ body{
   width: 100%;
   font-size: 18px;
   height: 50px;
+  color:black;
 }
 #checkout:hover{
   color:black;
@@ -81,4 +82,8 @@ tbody{
 
   text-align: center;
   /*background-color: gray;*/
+}
+
+.modal-body{
+  color:black;
 }
