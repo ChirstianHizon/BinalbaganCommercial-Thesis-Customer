@@ -40,4 +40,10 @@ textarea{
 .map{
 	height: 500px;
 	background-color: gray;
+	cursor: pointer !important;
+}
+
+.imageselector{
+	font-size: 12px;
+	display: none;
 }

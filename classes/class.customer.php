@@ -33,6 +33,49 @@ class Customer {
     }
   }
 
+  public function getCustomerDetails($id){
+    $sql = " SELECT *
+             FROM tbl_customer
+             WHERE cust_id = '$id'
+             LIMIT 1
+    ";
+    $result = mysqli_query($this->db,$sql) or die(mysqli_error() . $sql);
+    if($result){
+      while($row = mysqli_fetch_assoc($result)){
+        $list[] = $row;
+      }
+      if(empty($list)){return false;}
+      return $list;
+    }else {
+      return $result;
+    }
+  }
+
+  public function getCustomerAddress($id){
+    $sql = "SELECT *
+            FROM tbl_address ad
+            WHERE ad.cust_id = '$id'
+    ";
+    $result = mysqli_query($this->db,$sql) or die(mysqli_error() . $sql);
+    if($result){
+      while($row = mysqli_fetch_assoc($result)){
+        $list[] = $row;
+      }
+      if(empty($list)){return false;}
+      return $list;
+    }else {
+      return $result;
+    }
+  }
+
+
+
+
+
+
+
+
+
   public function str_insert($str, $search, $insert) {
     $index = strpos($str, $search);
     if($index === false) {

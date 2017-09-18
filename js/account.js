@@ -1,5 +1,6 @@
 var ordertb;
 $(function() {
+  hide("#imageselector");
   console.log('SCRIPT RUNNING');
 
   ordertb = $('#order_id').DataTable({
@@ -11,8 +12,8 @@ $(function() {
   });
 
   getUserOrders();
+  getUserDetails();
   // google.maps.event.addDomListener(window, 'load', initializeMap);
-
 });
 
 
@@ -22,8 +23,11 @@ $(function() {
 //
 //   $('#customer_map').height(x);
 // }
-
-
+var file;
+function getimage(event){
+  file = event.target.files[0];
+  console.log(file);
+}
 
 function getUserOrders(){
   $.ajax({
@@ -52,23 +56,81 @@ function getUserOrders(){
   });
   return false;
 }
+var custaddress,custlat,custlng;
+function getUserDetails(){
+  $.ajax({
+    url: "php/customer.php",
+    type: "POST",
+    async: true,
+    dataType: "json",
+    data: {
+      "access":access,
+      "type":3
+    },success: function(result){
+      console.log(result);
+      custaddress = result.address;
+      custlat = result.lat;
+      custlng = result.lng;
+    },error: function(response) {
+      console.log(response);
+    }
+  });
+}
+
+var isonEdit = false;
+var edtbutton = document.getElementById('editprofile');
+edtbutton.addEventListener('click', function() {
+  if(!isonEdit){
+    show("#imageselector");
+    edtbutton.innerHTML = "Save Profile";
+    document.getElementById('uname').disabled = false;
+    document.getElementById('ufname').disabled = false;
+    document.getElementById('ulname').disabled = false;
+    document.getElementById('uaddress').disabled = false;
+    document.getElementById('ucontact').disabled = false;
+    isonEdit = true;
+  }else{
+    hide("#imageselector");
+    edtbutton.innerHTML = "Edit Profile";
+    document.getElementById('uname').disabled = true;
+    document.getElementById('ufullname').disabled = true;
+    document.getElementById('uaddress').disabled = true;
+    document.getElementById('ucontact').disabled = false;
+    isonEdit = false;
+    alert('Save Complete');
+  }
+
+}, false);
 
 
-var directionsDisplay,directionsService,map,infoWindow,geocoder;
+
+
+
+
+
+
+
+
+
+
+var directionsDisplay,directionsService,map,infoWindow,geocoder,gmarker = [],currentadd;
 // -------------------------------- MAPS API ------------------------------------------//
 function initializeMap() {
+  var marker;
   // directionsDisplay = new google.maps.DirectionsRenderer();
   // directionsService = new google.maps.DirectionsService();
   var map = new google.maps.Map(document.getElementById('customer_map'), {
-    zoom: 17,
-    center: new google.maps.LatLng(10.194262, 122.862165),
+    zoom: 10,
+    center: new google.maps.LatLng(cusrlat, custlng),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
   // directionsDisplay.setMap(map);
   infoWindow = new google.maps.InfoWindow;
   geocoder = new google.maps.Geocoder;
+
   // Try HTML5 geolocation.
-  if (navigator.geolocation) {
+  if (navigator.geolocation && isonEdit) {
+    console.log("Geolocation is Enabled");
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = {
         lat: position.coords.latitude,
@@ -80,35 +142,68 @@ function initializeMap() {
       infoWindow.open(map);
       map.setCenter(pos);
 
-      geocoder.geocode({'location': pos}, function(results, status) {
-        if (status === 'OK') {
-          if (results[0]) {
-            map.setZoom(17);
-            var marker = new google.maps.Marker({
-              position: pos,
-              map: map
-            });
-            infoWindow.setContent("Location: "+results[0].formatted_address);
-            console.log(results[0].formatted_address);
-            infoWindow.open(map, marker);
-          } else {
-            window.alert('No results found');
-          }
-        } else {
-          window.alert('Geocoder failed due to: ' + status);
-        }
-      });
-
-
-      // console.log("Coord"+pos.lat+" | "+pos.lng);
+      // geocoder.geocode({'location': pos}, function(results, status) {
+      //   if (status === 'OK') {
+      //     if (results[0]) {
+      //       map.setZoom(17);
+      //       currentadd = results[0].formatted_address;
+      //       infoWindow.setContent("Current Location: "+results[0].formatted_address);
+      //       document.getElementById("uaddress").value = results[0].formatted_address;
+      //       console.log(results[0].formatted_address);
+      //       // infoWindow.open(map, marker);
+      //     } else {
+      //       window.alert('No results found');
+      //     }
+      //   } else {
+      //     window.alert('Geocoder failed due to: ' + status);
+      //   }
+      // });
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
     });
   } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
+    //Broswer is NOT on Edit MODE
+    if(isonEdit){
+      // Browser doesn't support Geolocation
+      alert('Your browser doesn\'t support geolocation.');
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
   }
 
+  google.maps.event.addListener(map, 'click', function(event) {
+
+      if(isonEdit){
+        removeMarkers();
+        map.setZoom(17);
+        var marker = new google.maps.Marker({
+          position: event.latLng,
+          map: map
+        });
+        gmarker.push(marker);
+
+        geocoder.geocode({'location': event.latLng}, function(results, status) {
+          if (status === 'OK') {
+            if (results[0]) {
+
+              infoWindow.setContent("New Address: "+results[0].formatted_address);
+              document.getElementById("uaddress").value = results[0].formatted_address;
+              console.log(results[0].formatted_address);
+              infoWindow.open(map, marker);
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
+      }
+  });
+}
+
+function removeMarkers(){
+    for(i=0; i<gmarker.length; i++){
+        gmarker[i].setMap(null);
+    }
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -118,6 +213,16 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                         'Error: Your browser doesn\'t support geolocation.');
   infoWindow.open(map);
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -140,4 +245,20 @@ function addCommas(nStr) {
 }
 function get2decimal(int){
   return parseFloat(Math.round(int * 100) / 100).toFixed(2);
+}
+
+function hide (elements) {
+  elements = document.querySelectorAll(elements);
+  elements = elements.length ? elements : [elements];
+  for (var index = 0; index < elements.length; index++) {
+    elements[index].style.display = 'none';
+  }
+}
+
+function show (elements) {
+  elements = document.querySelectorAll(elements);
+  elements = elements.length ? elements : [elements];
+  for (var index = 0; index < elements.length; index++) {
+    elements[index].style.display = 'block';
+  }
 }

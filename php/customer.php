@@ -18,17 +18,23 @@ $access = (isset($_POST['access']) && $_POST['access'] != '') ? $_POST['access']
 
 $access_web = "bd31b73daa1b64f0f2f6044a4fe0bc98";
 $access = md5($access);
+
+
+
+$uname =$customer->str_insert($uname, "'", "'");
+$pass =$customer->str_insert($pass, "'", "'");
+$fname =$customer->str_insert($fname, "'", "'");
+$lname =$customer->str_insert($lname, "'", "'");
+$contact =$customer->str_insert($contact, "'", "'");
+$image =$customer->str_insert($image, "'", "'");
+
+
 if($access == $access_web){
   switch ($type) {
     case 0 :
     echo json_encode(array("main" => $result));
     break;
     case 1:
-    $uname =$customer->str_insert($uname, "'", "'");
-    $pass =$customer->str_insert($pass, "'", "'");
-    $fname =$customer->str_insert($fname, "'", "'");
-    $lname =$customer->str_insert($lname, "'", "'");
-    $contact =$customer->str_insert($contact, "'", "'");
     $result = $customer->createCustomerAccount($uname,$pass,$fname,$lname,$contact);
     echo json_encode(array("main" => $result));
     break;
@@ -48,6 +54,47 @@ if($access == $access_web){
       }
 
     }
+    break;
+    case 3:
+    $details = $customer->getCustomerDetails($_SESSION['custid']);
+    $add_list = $customer->getCustomerAddress($_SESSION['custid']);
+    if(!$details){
+      echo json_encode(array("main" => "NO DETAILS FOUND"));
+      break;
+    }else{
+      foreach($details as $value){
+        $name =  $value['cust_username'];
+        $fname =  $value['cust_firstname'];
+        $lname =  $value['cust_lastname'];
+        $contact = $value['cust_contact'];
+      }
+    }
+    if(!$add_list){
+      $address = "";
+      $lat = "";
+      $lng = "";
+      $notes ="";
+      break;
+    }else{
+      foreach($add_list as $value){
+        $address = $value['add_name'];
+        $lat = $value['add_lat'];
+        $lng = $value['add_lng'];
+        $notes =$value['add_notes'];
+      }
+    }
+
+    echo json_encode(array(
+    "main" => "OK",
+    "name" => $name,
+    "fname" => $fname,
+    "lname" => $lname,
+    "contact" => $contact,
+    "address" => $address,
+    "lat" => $lat,
+    "lng" => $lng,
+    "notes" =>$notes
+    ));
     break;
     default:
     echo json_encode(array("main" => "TEST"));

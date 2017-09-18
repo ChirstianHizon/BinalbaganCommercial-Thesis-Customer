@@ -6,6 +6,8 @@
     session_start();
     // $_SESSION = [];
     $_SESSION['custlogin']= false;
+    $_SESSION['custid'] = '';
+    $_SESSION['custname'] = '';
     // session_destroy();
     header("location: index.php".$stat);
   }

@@ -15,6 +15,11 @@ $custid = (!empty($_SESSION['custid'])) ? $_SESSION['custid'] : "";
 
 $access_web = "bd31b73daa1b64f0f2f6044a4fe0bc98";
 $access = md5($access);
+
+
+
+$id =$order->str_insert($id, "'", "'");
+
 if($access == $access_web){
   if($custid == ""){
   }

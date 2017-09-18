@@ -24,7 +24,7 @@
   <div class="container">
     <h1 class="text-center">Product Available</h1>
     <div id="searchcontainer">
-      <input id="searchbar" onkeydown="searchPage()" type="search" placeholder="Search any Item"/> <br/><br/><br/>
+      <input id="searchbar" onkeyup="searchPage()" type="search" placeholder="Search any Item"/> <br/><br/><br/>
     </div>
     <div id="prodview" class="row">
 

@@ -12,6 +12,9 @@ $search = (isset($_POST['search']) && $_POST['search'] != '') ? $_POST['search']
 $limit = (isset($_POST['limit']) && $_POST['limit'] != '') ? $_POST['limit'] : '';
 $lastprd = (isset($_POST['lastprd']) && $_POST['lastprd'] != '') ? $_POST['lastprd'] : '';
 
+$search =$products->str_insert($search, "'", "'");
+
+
 
 $access_web = "bd31b73daa1b64f0f2f6044a4fe0bc98";
 $access = md5($access);
@@ -42,7 +45,7 @@ if($access == $access_web){
             <div  class="prod-view-desc">
             <p>'.$value['PDESC'].'</p>
             </div>
-            <p class="price">P'.$value['PRICE'].'</p>
+            <p class="price">₱ '.number_format($value['PRICE'],2).'</p>
 
             <!-- Input Group -->
             <div class="input-group">

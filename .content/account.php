@@ -32,22 +32,35 @@
 
 
     <div class="section group">
+      <!-- COLUMN 1 -->
     	<div id="userdetails" class="col span_1_of_2">
-        Account Details<br /><br />
+        Account Details <br />
         <div id="image-container">
           <div id="image">
             <img src="images/iphone.jpg" width="200px" height="200px"/>
+            <input id="imageselector" class="imageselector" type="file" alt="Choose Product Image" onchange="getimage(event)" ><br>
           </div>
         </div><br />
         Username: <br />
-        <input id="uname" type="text" placeholder="Username" value="<?php echo $_SESSION['custname']; ?>"readonly/>
-        Name:<br  />
-        <input id="ufullname" type="text" placeholder="Username" value="<?php echo $_SESSION['custfname']." ".$_SESSION['custlname']; ?>"readonly/>
+        <input id="uname" type="text" placeholder="Username" value="<?php echo $_SESSION['custname']; ?>" disabled/>
+        First Name:<br  />
+        <input id="ufname" type="text" placeholder="First Name" value="<?php echo $_SESSION['custfname']; ?>" disabled/>
+        Last Name:<br  />
+        <input id="ulname" type="text" placeholder="Last Name" value="<?php echo $_SESSION['custlname']; ?>" disabled/>
+        Contact:<br  />
+        <input id="ucontact" type="number" placeholder="Contact Number" min="0" disabled/>
         Address<br/>
-        <textarea id="uaddress" rows="5" placeholder="Address" readonly></textarea>
+        <textarea id="uaddress" rows="5" placeholder="Address" disabled ></textarea>
+        <button id="editprofile"> Edit Profile</button>
+        <button id="changepass">Cancel</button>
+        <button id="changepass">Change Password</button>
     	</div>
-    	<div id="mapandpic" class="col span_1_of_2">
+
+
+      <!-- COLUMN 2 -->
+      <div id="mapandpic" class="col span_1_of_2">
     	Address:<br />
+      <b>Set your Address by Clicking anywhere on the Map</b><br />
       <div id="customer_map" class="map"></div>
     	</div>
     </div>
