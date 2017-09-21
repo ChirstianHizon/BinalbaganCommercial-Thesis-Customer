@@ -14,6 +14,15 @@ $fname = (isset($_POST['fname']) && $_POST['fname'] != '') ? $_POST['fname'] : '
 $lname = (isset($_POST['lname']) && $_POST['lname'] != '') ? $_POST['lname'] : '';
 $contact = (isset($_POST['contact']) && $_POST['contact'] != '') ? $_POST['contact'] : '';
 $image = (isset($_POST['image']) && $_POST['image'] != '') ? $_POST['image'] : '';
+$address = (isset($_POST['address']) && $_POST['address'] != '') ? $_POST['address'] : '';
+
+$notes = (isset($_POST['notes']) && $_POST['notes'] != '') ? $_POST['notes   '] : '';
+
+
+$lat = (isset($_POST['lat']) && $_POST['lat'] != '') ? $_POST['lat'] : '';
+$lng = (isset($_POST['lng']) && $_POST['lng'] != '') ? $_POST['lng'] : '';
+
+
 $access = (isset($_POST['access']) && $_POST['access'] != '') ? $_POST['access'] : '';
 
 $access_web = "bd31b73daa1b64f0f2f6044a4fe0bc98";
@@ -21,12 +30,17 @@ $access = md5($access);
 
 
 
-$uname =$customer->str_insert($uname, "'", "'");
-$pass =$customer->str_insert($pass, "'", "'");
-$fname =$customer->str_insert($fname, "'", "'");
-$lname =$customer->str_insert($lname, "'", "'");
+$uname = $customer->str_insert($uname, "'", "'");
+$pass = $customer->str_insert($pass, "'", "'");
+$fname = $customer->str_insert($fname, "'", "'");
+$address = $customer->str_insert($address, "'", "'");
+$lname = $customer->str_insert($lname, "'", "'");
 $contact =$customer->str_insert($contact, "'", "'");
-$image =$customer->str_insert($image, "'", "'");
+$image = $customer->str_insert($image, "'", "'");
+
+$lat = $customer->str_insert($lat, "'", "'");
+$lng = $customer->str_insert($lng, "'", "'");
+
 
 
 if($access == $access_web){
@@ -67,6 +81,8 @@ if($access == $access_web){
         $fname =  $value['cust_firstname'];
         $lname =  $value['cust_lastname'];
         $contact = $value['cust_contact'];
+        $image= $value['cust_image'];
+
       }
     }
     if(!$add_list){
@@ -90,6 +106,7 @@ if($access == $access_web){
     "fname" => $fname,
     "lname" => $lname,
     "contact" => $contact,
+    "image"=>$image,
     "address" => $address,
     "lat" => $lat,
     "lng" => $lng,
@@ -97,7 +114,20 @@ if($access == $access_web){
     ));
     break;
     default:
-    echo json_encode(array("main" => "TEST"));
+    case 4:
+    $status = $customer->updateCustomerDetails($_SESSION['custid'],$fname,$lname,$contact,$image);
+
+    echo json_encode(array(
+    "main" => $status,
+    "fname" => $fname,
+    "lname" => $lname,
+    "contact" => $contact,
+    "image"=>$image,
+    "address" => $address,
+    "lat" => $lat,
+    "lng" => $lng,
+    "notes" =>$notes
+    ));
     break;
   }
 }else{

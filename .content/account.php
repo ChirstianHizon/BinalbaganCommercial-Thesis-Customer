@@ -52,7 +52,7 @@
         Address<br/>
         <textarea id="uaddress" rows="5" placeholder="Address" disabled ></textarea>
         <button id="editprofile"> Edit Profile</button>
-        <button id="changepass">Cancel</button>
+        <button id="cancel">Cancel</button>
         <button id="changepass">Change Password</button>
     	</div>
 

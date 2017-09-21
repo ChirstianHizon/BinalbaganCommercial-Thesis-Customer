@@ -1,4 +1,5 @@
 var ordertb;
+var custlat = 10.194262,custlng = 122.862165;
 $(function() {
   hide("#imageselector");
   console.log('SCRIPT RUNNING');
@@ -17,12 +18,14 @@ $(function() {
 });
 
 
-// window.onload = function () {
-//   var x = $('#userdetails').height();
-//   console.log(x + 'px');
-//
-//   $('#customer_map').height(x);
-// }
+window.onload = function () {
+  var x = $('#userdetails').height();
+  console.log(x + 'px');
+
+  $('#customer_map').height(x);
+}
+
+
 var file;
 function getimage(event){
   file = event.target.files[0];
@@ -56,7 +59,7 @@ function getUserOrders(){
   });
   return false;
 }
-var custaddress,custlat,custlng;
+var custaddress
 function getUserDetails(){
   $.ajax({
     url: "php/customer.php",
@@ -69,21 +72,33 @@ function getUserDetails(){
     },success: function(result){
       console.log(result);
       custaddress = result.address;
-      custlat = result.lat;
-      custlng = result.lng;
+
+      document.getElementById('uname').value = result.name;
+      document.getElementById('ufname').value = result.fname;
+      document.getElementById('ulname').value = result.lname;
+      document.getElementById('uaddress').value = result.address;
+      document.getElementById('ucontact').value = result.contact;
+
+      if(result.lat != "" && result != ""){
+        custlat = result.lat;
+        custlng = result.lng;
+      }else{
+        custlat = 10.194262;
+        custlng = 122.862165;
+      }
     },error: function(response) {
       console.log(response);
     }
   });
 }
-
+// 10.194262, 122.862165
 var isonEdit = false;
 var edtbutton = document.getElementById('editprofile');
 edtbutton.addEventListener('click', function() {
   if(!isonEdit){
     show("#imageselector");
     edtbutton.innerHTML = "Save Profile";
-    document.getElementById('uname').disabled = false;
+    // document.getElementById('uname').disabled = false;
     document.getElementById('ufname').disabled = false;
     document.getElementById('ulname').disabled = false;
     document.getElementById('uaddress').disabled = false;
@@ -91,11 +106,13 @@ edtbutton.addEventListener('click', function() {
     isonEdit = true;
   }else{
     hide("#imageselector");
+    upateCustomerDetails();
     edtbutton.innerHTML = "Edit Profile";
-    document.getElementById('uname').disabled = true;
-    document.getElementById('ufullname').disabled = true;
+    // document.getElementById('uname').disabled = true;
+    document.getElementById('ufname').disabled = true;
+    document.getElementById('ulname').disabled = true;
     document.getElementById('uaddress').disabled = true;
-    document.getElementById('ucontact').disabled = false;
+    document.getElementById('ucontact').disabled = true;
     isonEdit = false;
     alert('Save Complete');
   }
@@ -103,6 +120,52 @@ edtbutton.addEventListener('click', function() {
 }, false);
 
 
+var edtcancel = document.getElementById('cancel');
+edtcancel.addEventListener('click', function() {
+
+
+  if(isonEdit){
+    getUserDetails();
+    hide("#imageselector");
+    edtbutton.innerHTML = "Edit Profile";
+    document.getElementById('ufname').disabled = true;
+    document.getElementById('ulname').disabled = true;
+    document.getElementById('uaddress').disabled = true;
+    document.getElementById('ucontact').disabled = true;
+    isonEdit = false;
+  }
+
+}, false);
+
+function upateCustomerDetails() {
+  var ufname = document.getElementById('ufname').value ;
+  var ulname = document.getElementById('ulname').value ;
+  var uaddress = document.getElementById('uaddress').value ;
+  var ucontact =document.getElementById('ucontact').value ;
+  var uimage = "";
+
+  $.ajax({
+    url: "php/customer.php",
+    type: "POST",
+    async: true,
+    dataType: "json",
+    data: {
+      "access":access,
+      "fname": ufname,
+      "lname": ulname,
+      "image": uimage,
+      "contact": ucontact,
+      "address": uaddress,
+      "lat":"",
+      "lng":"",
+      "type":4
+    },success: function(result){
+      console.log(result);
+    },error: function(response) {
+      console.log(response);
+    }
+  });
+}
 
 
 
@@ -121,7 +184,7 @@ function initializeMap() {
   // directionsService = new google.maps.DirectionsService();
   var map = new google.maps.Map(document.getElementById('customer_map'), {
     zoom: 10,
-    center: new google.maps.LatLng(cusrlat, custlng),
+    center: new google.maps.LatLng(custlat, custlng),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
   // directionsDisplay.setMap(map);

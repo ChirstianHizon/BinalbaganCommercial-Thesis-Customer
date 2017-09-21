@@ -68,6 +68,24 @@ class Customer {
     }
   }
 
+  public function updateCustomerDetails($id,$fname,$lname,$contact,$image){
+
+    $sql = "UPDATE tbl_customer SET
+    cust_firstname = '$fname',
+    cust_lastname = '$lname',
+    cust_contact = '$contact',
+    cust_image = '$image'
+    WHERE cust_id = '$id'";
+    $result = mysqli_query($this->db,$sql) or die(mysqli_error() . "CLASS ERROR");
+    return $result;
+
+  }
+
+  public function insertAddress($id,$address,$lat,$lng,$notes){
+    $sql = "INSERT INTO tbl_address(add_name,add_notes,add_lat,add_lng,add_status)
+    VALUES('$id','$notes','$lat','$lng','1')";
+  }
+
 
 
 
