@@ -85,6 +85,9 @@ function removecartitem(clickedElement) {
 
 function typeChoose(clickedElement) {
   var type = clickedElement.id;
+  if(type == "btndelivery"){
+    type = 1;
+  }
   Checkout(type);
 }
 

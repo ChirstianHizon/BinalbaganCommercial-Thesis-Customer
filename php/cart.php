@@ -61,23 +61,24 @@ if($access == $access_web){
       }
       echo json_encode(array("main" => $list,"cust"=>true));
         break;
-        case 3:
-        // echo json_encode(array("main" => $order->addOrder($custid,$ordertype)));
-        $list =  $cart->getCart($custid);
-        if(!$list){break;}
-        $orderid =  $order->addOrder($custid,$ordertype);
-        $count = 0;
-        foreach($list as $value){
-          $order->addOrderList($orderid,$value['prd_id'],$value['cart_prd_qty']);
-          $count++;
-        }
-        $stat = $cart->deleteALLCart($custid);
-        echo json_encode(array("main" => true,"cust"=>$custid));
-        break;
-        case 4:
-          $result = $cart->deleteCart($id,$custid);
-          echo json_encode(array("main" => $result,"cust"=>$custid));
-        break;
+      case 3:
+      // echo json_encode(array("main" => $order->addOrder($custid,$ordertype)));
+      $list =  $cart->getCart($custid);
+      if(!$list){break;}
+      $orderid =  $order->addOrder($custid,$ordertype);
+      $count = 0;
+      foreach($list as $value){
+        $order->addOrderList($orderid,$value['prd_id'],$value['cart_prd_qty']);
+        $count++;
+      }
+      $stat = $cart->deleteALLCart($custid);
+      echo json_encode(array("main" => $orderid,"cust"=>$custid,"type"=>$ordertype));
+      break;
+
+      case 4:
+        $result = $cart->deleteCart($id,$custid);
+        echo json_encode(array("main" => $result,"cust"=>$custid));
+      break;
 
 
 

@@ -180,7 +180,7 @@
        <div class="modal-body">
          Choose how to recieve Product:
          <br/>
-        <button id="btndelivery" class="btntype" onclick="typeChoose(this)" id="1"> Delivery </button>
+        <button id="btndelivery" class="btntype" onclick="typeChoose(this)"> Delivery </button>
 
         <button class="btntype" onclick="typeChoose(this)" id="0"> Pickup </button>
        </div>
