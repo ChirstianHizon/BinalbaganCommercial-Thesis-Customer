@@ -36,7 +36,7 @@ class Orders{
     $sql = "SELECT
     tbl_order.order_id AS ID,
     prd_qty AS QTY,
-    SUM(prd_price *tbl_order_list.prd_qty)AS TOTAL,
+    SUM(tbl_order_list.prd_price *tbl_order_list.prd_qty)AS TOTAL,
     order_status AS OSTAT,
     order_type AS OTYPE,
     order_datestamp AS ODATE
