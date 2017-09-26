@@ -17,6 +17,18 @@ class Customer {
     return $result;
   }
 
+  public function checkUname($uname){
+    $sql="SELECT COALESCE(COUNT(*),0) AS RESULT FROM tbl_customer WHERE cust_username = '$uname' limit 1";
+    $result = mysqli_query($this->db,$sql) or die(mysqli_error() . $sql);
+    $row = mysqli_fetch_assoc($result);
+    $result = $row['RESULT'];
+    if($result <= 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
   public function checkLogin($uname,$pass){
     $pass = md5($pass);
     $sql = "SELECT cust_id AS ID,cust_lastname AS LNAME,cust_firstname AS FNAME,cust_username AS USERNAME,count(cust_id) AS COUNT FROM tbl_customer

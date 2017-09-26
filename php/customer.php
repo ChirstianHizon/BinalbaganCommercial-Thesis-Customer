@@ -49,8 +49,12 @@ if($access == $access_web){
     echo json_encode(array("main" => $result));
     break;
     case 1:
-    $result = $customer->createCustomerAccount($uname,$pass,$fname,$lname,$contact);
-    echo json_encode(array("main" => $result));
+    $ver = $customer->checkUname($uname);
+    $result = false;
+    if($ver){
+      $result = $customer->createCustomerAccount($uname,$pass,$fname,$lname,$contact);
+    }
+    echo json_encode(array("main" => $result,"uname"=>$ver));
     break;
     case 2:
     $login_status = $customer->checkLogin($uname,$pass);

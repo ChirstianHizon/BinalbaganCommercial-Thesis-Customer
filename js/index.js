@@ -152,10 +152,15 @@ function register() {
       "type":1
     },success: function(result){
       console.log(result);
-      if(result.main){
-        closeModal();
-        alert("Registered Sucessfully");
+      if(result.uname){
+        if(result.main){
+          closeModal();
+          alert("Registered Sucessfully");
+        }
+      }else{
+        alert("username already used");
       }
+
     },error: function(response) {
       console.log(response);
     }

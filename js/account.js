@@ -23,7 +23,7 @@ window.onload = function () {
   console.log(x + 'px');
 
   $('#customer_map').height(x);
-}
+};
 
 
 var file;
@@ -59,7 +59,7 @@ function getUserOrders(){
   });
   return false;
 }
-var custaddress
+var custaddress;
 function getUserDetails(){
   $.ajax({
     url: "php/customer.php",
@@ -188,8 +188,8 @@ function initializeMap() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
   // directionsDisplay.setMap(map);
-  infoWindow = new google.maps.InfoWindow;
-  geocoder = new google.maps.Geocoder;
+  infoWindow = new google.maps.InfoWindow();
+  geocoder = new google.maps.Geocoder();
 
   // Try HTML5 geolocation.
   if (navigator.geolocation && isonEdit) {

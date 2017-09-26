@@ -6,7 +6,7 @@ class Orders{
     if(mysqli_connect_errno()){
       echo "Database connection error.";
       exit;
-    } 
+    }
   }
 
   public function test(){
@@ -26,8 +26,14 @@ class Orders{
   }
 
   public function addOrderList($orderid,$prdid,$prdqty){
-    $sql = "INSERT INTO tbl_order_list(prd_id,prd_qty,order_id)
-    VALUES('$prdid','$prdqty','$orderid')";
+    $price= 0;
+    $sql= "SELECT COALESCE(prd_price,0) AS PRICE FROM tbl_product WHERE prd_id = '$prdid'";
+    $result = mysqli_query($this->db,$sql) or die(mysqli_error() . $sql);
+    $row = mysqli_fetch_assoc($result);
+    $price = $row['PRICE'];
+
+    $sql = "INSERT INTO tbl_order_list(prd_id,prd_qty,order_id,prd_price)
+    VALUES('$prdid','$prdqty','$orderid','$price')";
     $result = mysqli_query($this->db,$sql) or die(mysqli_error() . $sql);
     return $result;
   }
