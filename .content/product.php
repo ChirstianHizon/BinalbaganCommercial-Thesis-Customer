@@ -42,7 +42,7 @@
           <!-- Copyright etc -->
           <div class="small-print">
           	<div class="container">
-          		<p><a href="#">Terms &amp; Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact</a></p>
+          		<!-- <p><a href="#">Terms &amp; Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact</a></p> -->
           		<p>Copyright &copy; BinalbaganCommercial.com 2017 </p>
           	</div>
           </div>

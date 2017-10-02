@@ -31,6 +31,7 @@ if($access == $access_web){
       break;
     }
     foreach($list as $value){
+      $desc = strlen($value['PDESC']) > 210 ? substr($value['PDESC'],0,210)."..." : $value['PDESC'];
       $html = $html.'
       <div class="col-sm-6 col-md-3">
         <div class="thumbnail featured-product">
@@ -43,7 +44,7 @@ if($access == $access_web){
             <h3>'.$value['NAME'].'</h3>
             </div>
             <div  class="prod-view-desc">
-            <p>'.$value['PDESC'].'</p>
+            <p>'.$desc.'</p>
             </div>
             <p class="price">₱ '.number_format($value['PRICE'],2).'</p>
 

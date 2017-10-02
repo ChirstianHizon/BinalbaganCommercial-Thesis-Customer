@@ -97,7 +97,8 @@
              <input id="submit" type="submit" value="Login"/>
          </form>
          <br/>
-         Don't Have an Account? <a href="#" onclick="return openRegister()">Sign up</a>
+         Don't Have an Account? <a href="#" onclick="return openRegister()">Sign up</a><br />
+         Employee Login? <a href="/BinalbaganCommercial-Console/" >Login Here</a>
          <br/>
        </div>
      </div>
