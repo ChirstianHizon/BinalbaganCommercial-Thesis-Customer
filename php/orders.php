@@ -1,8 +1,8 @@
 <?php
-include '..\library\config.php';
-include '..\classes\class.cart.php';
-include '..\classes\class.orders.php';
-include '..\classes\class.products.php';
+include '../library/config.php';
+include '../classes/class.cart.php';
+include '../classes/class.orders.php';
+include '../classes/class.products.php';
 
 $order = new Orders();
 
@@ -79,5 +79,5 @@ if($access == $access_web){
   }
 
 }else {
-  header("location: ../index.php");
+  header("location: ..\index.php");
 }

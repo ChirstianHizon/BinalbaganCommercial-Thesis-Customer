@@ -30,7 +30,7 @@
                     </li>
                     <script>var page ="?mod=products"</script>
                     <?php
-                    session_start();
+                    // if (session_status() === PHP_SESSION_NONE){session_start();}
                     $fname = (!empty($_SESSION['custfname'])) ? $_SESSION['custfname'] : "";
                     $lname = (!empty($_SESSION['custlname'])) ? $_SESSION['custlname'] : "";
 

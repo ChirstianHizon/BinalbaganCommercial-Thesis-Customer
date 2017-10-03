@@ -1,8 +1,10 @@
 <?php
-include '..\library\config.php';
-include '..\classes\class.cart.php';
-include '..\classes\class.orders.php';
-include '..\classes\class.products.php';
+include '../library/config.php';
+include '../classes/class.cart.php';
+include '../classes/class.orders.php';
+include '../classes/class.products.php';
+
+
 // $orders = new Orders();
 $cart = new Cart();
 $product = new Products();

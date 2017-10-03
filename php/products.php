@@ -1,6 +1,6 @@
 <?php
-include '..\library\config.php';
-include '..\classes\class.products.php';
+include '../library/config.php';
+include '../classes/class.products.php';
 
 $products = new Products();
 
@@ -81,5 +81,5 @@ if($access == $access_web){
     break;
   }
 }else{
-  header("location: ../index.php");
+  header("location: ..\index.php");
 }

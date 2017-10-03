@@ -1,6 +1,8 @@
 <?php
-include '..\library\config.php';
-include '..\classes\class.customer.php';
+  if (session_status() === PHP_SESSION_NONE){session_start();}
+
+include '../library/config.php';
+include '../classes/class.customer.php';
 
 $customer = new Customer();
 
@@ -60,7 +62,6 @@ if($access == $access_web){
     $login_status = $customer->checkLogin($uname,$pass);
     foreach($login_status as $value){
       if($value['COUNT']){
-        // session_start();
         $_SESSION['custlogin']= true;
         $_SESSION['custid']= $value['ID'];
         $_SESSION['custname']= $value['USERNAME'];
@@ -135,5 +136,5 @@ if($access == $access_web){
     break;
   }
 }else{
-  header("location: ../index.php");
+  header("location: ..\index.php");
 }

@@ -1,9 +1,10 @@
 <?php
-
+  if (session_status() === PHP_SESSION_NONE){session_start();}
+  // session_start();
   $module = (isset($_GET['mod']) && $_GET['mod'] != '') ? $_GET['mod'] : '';
   $stat = (isset($_GET['stat']) && $_GET['stat'] != '') ? $_GET['stat'] : '';
   if($module == 'logout'){
-    session_start();
+
     // $_SESSION = [];
     $_SESSION['custlogin']= false;
     $_SESSION['custid'] = '';
@@ -57,13 +58,13 @@
   <?php
     switch ($module) {
       case '':
-        require_once '.home/index.php';
+        require_once 'home/index.php';
         break;
       case 'products':
-        require_once '.content/index.php';
+        require_once 'content/index.php';
         break;
       case 'account':
-        require_once '.content/index.php';
+        require_once 'content/index.php';
         break;
     }
    ?>
