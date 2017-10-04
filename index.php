@@ -36,6 +36,14 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
+  <link href="api/MetroUI/css/metro.css" rel="stylesheet">
+  <link href="api/MetroUI/css/metro-icons.css" rel="stylesheet">
+
+    <script src="js\jquery-1.11.3.min.js"></script>
+  <script src="api/MetroUI/js/metro.js"></script>
+
+
+
   <?php
     switch ($module) {
       case '':
@@ -68,7 +76,7 @@
         break;
     }
    ?>
-   <link rel="stylesheet" type="text/css" href="api/DataTables/datatables.min.css"/>
+   <!-- <link rel="stylesheet" type="text/css" href="api/DataTables/datatables.min.css"/> -->
 
    <link href="css/login.css" rel="stylesheet">
 
@@ -148,13 +156,13 @@
        </div>
        <div class="modal-body">
          <b id="cart-status"></b>
-         <table id="cart_id" class="display" width="100%" cellspacing="0">
+         <table id="cart_id" class="table cell-hovered border bordered" width="100%" cellspacing="0">
            <thead>
                <tr>
                    <th>Product</th>
                    <th>Quantity</th>
                    <th>Subtotal</th>
-                   <th></th>
+                   <th style="width:50px;"></th>
                </tr>
            </thead>
            <tbody id="cart-body">
@@ -162,11 +170,13 @@
          </table>
          <br/>
          <br/>
+         <br/>
+         <br/>
          Cart Total Amount: P<b id="cart-total"></b>
          <br/>
        </div>
        <div class = "modal-footer">
-         <button id="checkout"onclick="openTypePicker()"> Checkout </button>
+         <button id="checkout" onclick="openTypePicker()" class="button success"> Checkout </button>
        </div>
      </div>
    </div>
@@ -184,7 +194,7 @@
          <br/>
         <button id="btndelivery" class="btntype" onclick="typeChoose(this)"> Delivery </button>
 
-        <button class="btntype" onclick="typeChoose(this)" id="0"> Pickup </button>
+        <button class="btntype" onclick="typeChoose(this)" id="0" class="button danger"> Pickup </button>
        </div>
      </div>
    </div>

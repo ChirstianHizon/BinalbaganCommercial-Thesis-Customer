@@ -22,10 +22,18 @@
 
   <!-- Featured Products -->
   <div class="container">
-    <h1 class="text-center">Product Available</h1>
-    <div id="searchcontainer">
-      <input id="searchbar" onkeyup="searchPage()" type="search" placeholder="Search any Item"/> <br/><br/><br/>
+    <h1 class="text-center">Products Available</h1>
+
+    <div class="input-control text big-input" data-role="input">
+        <input id="searchbar" onkeyup="searchPage()"  type="text">
+        <button onclick="searchPage()" class="button"><span class="mif-search"></span></button>
     </div>
+    <br />
+    <br />
+    <br />
+    <br />
+
+
     <div id="prodview" class="row">
 
 

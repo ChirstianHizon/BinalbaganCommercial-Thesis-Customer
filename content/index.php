@@ -44,7 +44,7 @@
                       $lname = substr($lname,0,10);
                       $fname = substr($fname,0,10);
                       echo '<li class="dropdown">'.
-                              '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'.$lname.", ".$fname.'<span class="caret"></span></a>'.
+                              '<a href="#"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'.$lname.", ".$fname. '<span class="caret"></span></a>'.
                               '<ul class="dropdown-menu" aria-labelledby="about-us">
                                 <li><a href="index.php?mod=account">My Account</a></li>
                                 <!-- SIGN OUT  -->

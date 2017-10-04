@@ -25,72 +25,106 @@
 .sorting,
 .sorting_asc,
 .sorting_desc{
-  background-image: none!important;
+	background-image: none!important;
 }
 .prod-view-title{
-  min-height: 40px;
+	min-height: 40px;
 
 }
 .prod-view-desc{
-  min-height: 140px;
+	min-height: 140px;
 }
 
-#checkout{
-  width: 100%;height: 50px;color:black;font-size: 18px;
-  }
-#checkout:hover{
-  color:black;
+.input-control.text.big-input{
+	width: 100%;
+
 }
-#searchbar{
-  width: 100%;font-size: 34px;
-  }
-#searchcontainer{margin-top: 50px;padding-right: 5%;padding-left: 5%;
-  }
+.input-control.text.big-input button{
+	/*padding: 0;*/
+	border: none;
+	background: none;
+}
+#checkout{
+	width: 100%;
+	height: 100px;
+	font-size: 18px;
+}
+/*#checkout:hover{
+color:black;
+}*/
+/*#searchbar{
+width: 100%;font-size: 34px;
+}*/
+/*#searchcontainer{margin-top: 50px;padding-right: 5%;padding-left: 5%;
+}*/
 #prodview{
-  min-height: 300px;
+	min-height: 300px;
 }
 #noprod{
-  padding-top: 10%;
+	padding-top: 10%;
 }
 #noprod-container{
-  width: 100%;text-align: center;
-  }
+	width: 100%;text-align: center;
+}
 
 #cart_id_wrapper{
-  /*border: 2px solid grey;*/
+	/*border: 2px solid grey;*/
 }
 
 .sorting, .sorting_asc, .sorting_desc {
-    background : none;
+	background : none;
 }
 .paginate_button{
-  font-size: 12px;
+	font-size: 12px;
 }
 #row_1{
-  text-align: left;
+	text-align: left;
 }
 .btntype{
-  width: 100%;height: 80px;margin: 10px;margin-right: 0px;margin-left: 0px;font-size: 20px;
-  }
+	width: 100%;height: 80px;margin: 10px;margin-right: 0px;margin-left: 0px;font-size: 20px;
+}
+
 table{
-  font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+	font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
 }
 thead{text-align: center;font-size: 14px;
 
-  }
+}
 tbody{text-align: center;color:black;font-size: 12px;
 
-  }
+}
 
 .separator{
-  padding: 10px;border: 1px solid black;border-radius: 5px;
-  }
+	padding: 10px;border: 1px solid black;border-radius: 5px;
+}
 .title-sep{
-  width: 100%;text-align: center;
+	width: 100%;text-align: center;
 
-  /*background-color: gray;*/
+	/*background-color: gray;*/
 }
 
 .modal-body{
-  color:black;
+	color:black;
+}
+.container{
+	width: 100%;
+	padding-left: 8%;
+	padding-right: 8%;
+}
+
+.btn.btn-primary.btn-lg{
+	color: white !important;
+}
+
+.navbar-brand{
+	padding-left: 0px;
+	padding-right: 0px;
+	font-size: 16px;
+	margin-left: 5px;
+}
+.navbar-toggle{
+	margin-right: -10px;
+}
+body {
+	overflow-x: hidden;
 }

@@ -42,10 +42,10 @@ if($access == $access_web){
       $count++;
       $total = $total += $value['SUBTOTAL'];
       $html = $html.'<tr id="'.$value['ID'].'">'.
-                '<td id="row_1">'.$value['NAME'].'</td>'.
-                '<td>'.$value['QTY'].'</td>'.
-                '<td>'.$value['SUBTOTAL'].'</td>'.
-                '<td><button id="'.$value['ID'].'" onclick="return removecartitem(this)"> Remove</button></td>'.
+                '<td id="row_1"><b>'.$value['NAME'].'</b></td>'.
+                '<td><b>'.$value['QTY'].'</b></td>'.
+                '<td><b>'.$value['SUBTOTAL'].'</b></td>'.
+                '<td><button id="'.$value['ID'].'" onclick="return removecartitem(this)" class="button danger small"> Remove</button></td>'.
             "</tr>";
       }
       echo json_encode(array("main" => $html,"count"=> $count,"total"=>$total,"cust"=>true));
