@@ -49,11 +49,18 @@ function searchPage(){
   });
 }
 
-
+var itemselected = false;
 function addtocart(clickedElement) {
   var id = clickedElement.id;
   var input = document.getElementById("val-"+id).value;
   var max = document.getElementById("val-"+id).max;
+
+
+  if(itemselected){
+    return false;
+  }
+
+  itemselected = true;
 
   if(parseInt(input) > parseInt(max)){
     alert("Exceeded Available Product");
@@ -85,7 +92,7 @@ function addtocart(clickedElement) {
                     "type":2
                   },success: function(result){
                      console.log(result);
-
+                     itemselected = false;
                      if(!result.main){
                        alert("Please Login to Use Services");
                      }else{
@@ -99,11 +106,14 @@ function addtocart(clickedElement) {
           },
           {
               title: "Cancel",
-              cls: "js-dialog-close"
+              cls: "js-dialog-close",
+              onclick: function(el){
+                itemselected = false;
+              }
           }
       ],
       options: {
-      
+
 
       }
   });

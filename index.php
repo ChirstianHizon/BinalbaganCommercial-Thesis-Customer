@@ -39,7 +39,7 @@
   <link href="api/MetroUI/css/metro.css" rel="stylesheet">
   <link href="api/MetroUI/css/metro-icons.css" rel="stylesheet">
 
-    <script src="js\jquery-1.11.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
   <script src="api/MetroUI/js/metro.js"></script>
 
 

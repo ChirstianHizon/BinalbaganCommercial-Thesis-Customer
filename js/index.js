@@ -1,7 +1,7 @@
 var modal,carttb;
 $(document).ready(function(){
   document.getElementById("body").style.display = "block";
-
+  console.log("CODE RUNNING");
   carttb = $('#cart_id').DataTable({
     "responsive": true,
     "bLengthChange": false,

@@ -140,14 +140,14 @@ We have already been serving the people of Binalbagan for almost 20 years with p
   <div class="container">
     <h2 class="section-heading">Contact Us</h2>
     <p><span class="glyphicon glyphicon-earphone"></span><br> (+63) 441 1643</p>
-    <p><span class="glyphicon glyphicon-envelope"></span><br> BinalbaganCommercial@000webhostapp.com</p>
+    <p><span class="glyphicon glyphicon-envelope"></span><br> BinalbaganCommercial.tk</p>
   </div>
 </div>
 
 <!-- Copyright etc -->
 <div class="small-print">
   <div class="container">
-    <p>Copyright &copy; BinalbaganCommercial@000webhostapp.com 2017</p>
+    <p>Copyright &copy; BinalbaganCommercial.tk 2017</p>
   </div>
 </div>
 

@@ -33,7 +33,7 @@ if($access == $access_web){
     foreach($list as $value){
       $desc = strlen($value['PDESC']) > 150 ? substr($value['PDESC'],0,150)."..." : $value['PDESC'];
       if($value['LMAX'] > 0){
-        $html = $html.'
+      $html = $html.'
 
         <div class="col-sm-6 col-md-3">
           <div class="thumbnail featured-product">
@@ -67,6 +67,29 @@ if($access == $access_web){
         </div>
 
         ';
+      }else{
+        $html = $html.'
+
+          <div class="col-sm-6 col-md-3">
+            <div class="thumbnail featured-product">
+              <a href="#">
+              <br/>
+                <img src="'.$value['IMAGE'].'" id="product-image" alt="">
+              </a>
+              <div class="caption">
+                <div  class="prod-view-title">
+                <h3>'.$value['NAME'].'</h3>
+                </div>
+                <div  class="prod-view-desc">
+                <p>'.$desc.'</p>
+                </div>
+                <p class="price">₱ '.number_format($value['PRICE'],2).'</p>
+                <p class="quantity"> Not Available </p>
+              </div>
+            </div>
+          </div>
+
+          ';
       }
 
     }
