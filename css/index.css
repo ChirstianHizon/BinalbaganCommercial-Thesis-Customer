@@ -123,8 +123,17 @@ tbody{text-align: center;color:black;font-size: 12px;
 	margin-left: 5px;
 }
 .navbar-toggle{
-	margin-right: -10px;
+	margin-right: 10px;
 }
-body {
+html,body{
+	margin: 0;
+	/*overflow-x: hidden;*/
+	max-width: 100%;
+}
+body{
 	overflow-x: hidden;
+}
+
+.thumbnail.featured-product{
+	min-height: 510px;
 }
