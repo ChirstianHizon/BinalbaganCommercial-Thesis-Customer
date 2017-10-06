@@ -107,7 +107,7 @@
          </form>
          <br/>
          Don't Have an Account? <a href="#" onclick="return openRegister()">Sign up</a><br />
-         Employee Login? <a href="/BinalbaganCommercial-Console/" >Login Here</a>
+         Employee Login? <a href="/console" >Login Here</a>
          <br/>
        </div>
      </div>

@@ -32,6 +32,8 @@ if($access == $access_web){
     }
     foreach($list as $value){
       $desc = strlen($value['PDESC']) > 150 ? substr($value['PDESC'],0,150)."..." : $value['PDESC'];
+
+      $name = strlen($value['NAME']) > 45 ? substr($value['NAME'],0,45)."..." : $value['NAME'];
       if($value['LMAX'] > 0){
       $html = $html.'
 
@@ -43,7 +45,7 @@ if($access == $access_web){
             </a>
             <div class="caption">
               <div  class="prod-view-title">
-              <h3>'.$value['NAME'].'</h3>
+              <h3>'.$name.'</h3>
               </div>
               <div  class="prod-view-desc">
               <p>'.$desc.'</p>
