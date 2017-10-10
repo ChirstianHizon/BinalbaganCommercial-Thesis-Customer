@@ -1,10 +1,18 @@
-var ordertb;
+var ordertb,statustb;
 var custlat = 10.194262,custlng = 122.862165;
 $(function() {
-  hide("#imageselector");
+  // hide("#imageselector");
   console.log('SCRIPT RUNNING');
 
   ordertb = $('#order_id').DataTable({
+    "responsive": true,
+    "bLengthChange": false,
+    "bInfo" : false,
+    "bFilter": false,
+    "pageLength": 10
+  });
+
+  statustb = $('#status_id').DataTable({
     "responsive": true,
     "bLengthChange": false,
     "bInfo" : false,
@@ -52,6 +60,7 @@ function getUserOrders(){
         "bInfo" : false,
         "bFilter": false,
         "pageLength": 5,
+        "order": [[ 0, "desc" ]],
       });
     },error: function(response) {
       console.log(response);
@@ -96,7 +105,7 @@ var isonEdit = false;
 var edtbutton = document.getElementById('editprofile');
 edtbutton.addEventListener('click', function() {
   if(!isonEdit){
-    show("#imageselector");
+    // hide("#imageselector");
     edtbutton.innerHTML = "Save Profile";
     // document.getElementById('uname').disabled = false;
     document.getElementById('ufname').disabled = false;
@@ -105,7 +114,7 @@ edtbutton.addEventListener('click', function() {
     document.getElementById('ucontact').disabled = false;
     isonEdit = true;
   }else{
-    hide("#imageselector");
+    // hide("#imageselector");
     upateCustomerDetails();
     edtbutton.innerHTML = "Edit Profile";
     // document.getElementById('uname').disabled = true;
@@ -279,20 +288,61 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 
 
+function vieworder(clickedElement) {
+  var id = clickedElement.id;
+  modal = document.getElementById('order-modal');
+  openModal();
+
+  document.getElementById('orderid').innerHTML = id;
+
+  $.ajax({
+    url: "php/orders.php",
+    type: "POST",
+    async: true,
+    dataType: "json",
+    data: {
+      "access":access,
+      "id":id,
+      "type":2
+    },success: function(result){
+      console.log(result);
+      statustb.destroy();
+      document.getElementById("status-body").innerHTML=result.main;
+      document.getElementById("status-total").innerHTML=" P "+addCommas(get2decimal(result.total));
+      document.getElementById("status").innerHTML= result.status;
+      statustb = $('#status_id').DataTable({
+        "responsive": true,
+        "bLengthChange": false,
+        "bInfo" : false,
+        "bFilter": false,
+        "pageLength": 5,
+        "order": [[ 0, "desc" ]],
+      });
+    },error: function(response) {
+      console.log(response);
+    }
+  });
+}
 
 
 
 
 
 
-
-
-
-
-
-
-
-
+//------------------------------------- MODAL FUNCTIONS------------------------ //
+function closeModal(){
+  modal.style.display = "none";
+  modalactive= false;
+}
+function openModal(){
+  modal.style.display = "block";
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        closeModal();
+    }
+};
 
 //---------------------------------------- UTILITIES --------------------------------//
 function addCommas(nStr) {

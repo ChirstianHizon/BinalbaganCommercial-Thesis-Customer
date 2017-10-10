@@ -9,11 +9,21 @@ class Customer {
     }
   }
 
-  public function createCustomerAccount($uname,$pass,$fname,$lname,$contact){
+  public function createCustomerAccount($uname,$pass,$fname,$lname,$contact,$address){
     $pass = md5($pass);
     $sql = "INSERT INTO tbl_customer(cust_username,cust_password,cust_firstname,cust_lastname,cust_contact)
     VALUES('$uname','$pass','$fname','$lname','$contact')";
     $result = mysqli_query($this->db,$sql) or die(mysqli_error() . $sql);
+    if($result == 1){
+      //GETS THE LAST ID USED IN QUERY
+      $result = mysqli_insert_id($this->db);
+
+      $sql = "INSERT INTO tbl_address(add_name,cust_id)
+      VALUES('$address','$result')";
+      $result = mysqli_query($this->db,$sql) or die(mysqli_error() . $sql);
+
+    }
+
     return $result;
   }
 
@@ -80,7 +90,7 @@ class Customer {
     }
   }
 
-  public function updateCustomerDetails($id,$fname,$lname,$contact,$image){
+  public function updateCustomerDetails($id,$fname,$lname,$contact,$image,$address){
 
     $sql = "UPDATE tbl_customer SET
     cust_firstname = '$fname',
@@ -88,8 +98,36 @@ class Customer {
     cust_contact = '$contact',
     cust_image = '$image'
     WHERE cust_id = '$id'";
-    $result = mysqli_query($this->db,$sql) or die(mysqli_error() . "CLASS ERROR");
-    return $result;
+    $result = mysqli_query($this->db,$sql) or die(mysqli_error() . $sql);
+
+    $sql = "SELECT COALESCE(add_id,0) AS ID
+    FROM tbl_address
+    WHERE cust_id = '$id' AND add_status = '1' limit 1";
+    $result = mysqli_query($this->db,$sql) or die(mysqli_error() . $sql);
+
+    if(!mysqli_num_rows($result) > 0){
+
+      $sql = "INSERT INTO tbl_address(add_name,cust_id)
+      VALUES('$address','$id')";
+      $result = mysqli_query($this->db,$sql) or die(mysqli_error() . $sql);
+      return "HAHA";
+
+
+    }else{
+      $row = mysqli_fetch_assoc($result);
+      $addid = $row['ID'];
+
+      $sql = "UPDATE tbl_address SET
+      add_status = '0'
+      WHERE add_id = '$addid'";
+      $result = mysqli_query($this->db,$sql) or die(mysqli_error() . $sql);
+
+      $sql = "INSERT INTO tbl_address(add_name,cust_id)
+      VALUES('$address','$id')";
+      $result = mysqli_query($this->db,$sql) or die(mysqli_error() . $sql);
+      return $result;
+
+    }
 
   }
 

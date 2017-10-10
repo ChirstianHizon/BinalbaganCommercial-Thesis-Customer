@@ -135,5 +135,15 @@ body{
 }
 
 .thumbnail.featured-product{
-	min-height: 510px;
+	min-height: 490px;
+}
+
+.input-control.text,
+.input-control.password,
+.input-control.textarea{
+	width: 100%;
+}
+
+#submit{
+	width: 100%;
 }

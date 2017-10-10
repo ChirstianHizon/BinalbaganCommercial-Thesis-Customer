@@ -25,7 +25,7 @@
     <h1 class="text-center">Products Available</h1>
 
     <div class="input-control text big-input" data-role="input">
-        <input id="searchbar" onkeyup="searchPage()"  type="text">
+        <input id="searchbar" onkeyup="searchPage()"  type="text" placeholder="Enter a Product">
         <button onclick="searchPage()" class="button"><span class="mif-search"></span></button>
     </div>
     <br />

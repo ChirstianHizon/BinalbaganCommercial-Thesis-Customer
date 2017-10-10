@@ -51,7 +51,7 @@ if($access == $access_web){
               <p>'.$desc.'</p>
               </div>
               <p class="price">₱ '.number_format($value['PRICE'],2).'</p>
-              <p class="quantity">Available:  '.number_format($value['LMAX'],0).'</p>
+              <p class="quantity">Available:  <b>'.number_format($value['LMAX'],0).'</b></p>
 
               <!-- Input Group -->
               <div class="input-group">
@@ -86,7 +86,7 @@ if($access == $access_web){
                 <p>'.$desc.'</p>
                 </div>
                 <p class="price">₱ '.number_format($value['PRICE'],2).'</p>
-                <p class="quantity"> Not Available </p>
+                <p class="quantity" style="color:red;"><b>Not Available</b></p>
               </div>
             </div>
           </div>

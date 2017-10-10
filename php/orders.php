@@ -40,38 +40,73 @@ if($access == $access_web){
 
       switch ($value['OSTAT']) {
         case 0:
-        $stat = "Pending";
+        $stat = '<span style="color:yellow"><b>Pending</b></span>';
           break;
         case 1:
-          $stat = "Approved";
+          $stat = '<span style="color:green"><b>Approved</b></span>';
           break;
         case 2:
-          $stat="Declined";
+          $stat= '<span style="color:red"><b>Declined</b></span>';
           break;
         case 100:
-          $stat = "Completed";
+          $stat = '<span style="color:blue"><b>Completed</b></span>';
           break;
       }
 
       switch ($value['OTYPE']) {
         case 0:
-        $otype = "Pickup";
+        $otype = '<span style="color:green"><b>Pickup</b></span>';
           break;
         case 1:
-        $otype = "Delivery";
+        $otype = '<span style="color:orange"><b>Delivery</b></span>';
           break;
       }
       $html = $html.'<tr>'.
-                '<td>'.$value['ID'].'</td>'.
+                // '<td>'.$value['ID'].'</td>'.
                 '<td>'.$value['ODATE'].'</td>'.
-                '<td>'.$value['QTY'].'</td>'.
+                '<td>'.$value['QTY'].' item/s</td>'.
                 '<td>P '.number_format($value['TOTAL'],2).'</td>'.
                 '<td>'.$stat.'</td>'.
                 '<td>'.$otype.'</td>'.
-                '<td><button id="'.$value['ID'].'" onclick="return vieworder(this)"> View</button></td>'.
+                '<td><button id="'.$value['ID'].'" onclick="return vieworder(this)" class="button small-button"> View</button></td>'.
             "</tr>";
       }
       echo json_encode(array("main" => $html,"count"=> $count,"total"=>$total,"cust"=>true));
+      break;
+      case 2:
+      $html="";
+      $count=0;
+      $total=0;
+      $message = "";
+      $stat = "";
+      $list = $order->getSpecOrder($id);
+      if(!$list){echo json_encode(array("main" => "","total"=> 0,"cust"=>true));break;}
+      foreach($list as $value){
+        $message .= $value['NOTE'];
+        $total += $value['SUBTOTAL'];
+        $html = $html.'<tr>'.
+                  '<td>'.$value['NAME'].'</td>'.
+                  '<td>'.$value['QTY'].' item/s</td>'.
+                  '<td>P '.number_format($value['SUBTOTAL'],2).'</td>'.
+              "</tr>";
+
+        switch ($value['STATUS']) {
+          case 0:
+          $stat = '<span style="color:yellow">PENDING</span>';
+            break;
+          case 1:
+            $stat = '<span style="color:green">APPROVED</span>';
+            break;
+          case 2:
+            $stat= '<span style="color:red">DECLINED</span>';
+            break;
+          case 100:
+            $stat = '<span style="color:orange">COMPLETED</span';
+            break;
+        }
+
+      }
+      echo json_encode(array("main" => $html,"message"=>$message,"total"=>$total,"status"=>$stat));
       break;
     default:
       echo json_encode(array("main" => "TYPE ERROR"));

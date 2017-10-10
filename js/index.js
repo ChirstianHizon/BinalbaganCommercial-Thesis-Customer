@@ -130,6 +130,7 @@ function register() {
   var fname = document.getElementById("fname").value;
   var lname =document.getElementById("lname").value;
   var contact =document.getElementById("contact").value;
+  var address =document.getElementById("xaddress").value;
 
   console.log(fname);
   if(repass != pass){
@@ -149,6 +150,7 @@ function register() {
       "fname":fname,
       "lname":lname,
       "contact":contact,
+      "address":address,
       "type":1
     },success: function(result){
       console.log(result);

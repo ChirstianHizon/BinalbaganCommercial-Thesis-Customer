@@ -95,20 +95,21 @@
        </div>
        <div class="modal-body">
          <form id="login-form" onsubmit="return login();">
-             Username:
-             <input type="text" name="fname" id="log_uname" placeholder="Username" required/>
+             <div class="input-control text" data-role="input">
+               <input type="text" name="fname" id="log_uname" placeholder="Username" minlength="7" maxlength="20" required/>
+             </div>
              <br/>
-             Password:
-             <input type="password" name="pass" id="log_upass" placeholder="Password" required/>
+             <div class="input-control password" data-role="input">
+               <input type="password" name="pass" id="log_upass" placeholder="Password" minlength="7" maxlength="20" required/>
+               <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+             </div>
              <br/>
              <br/>
-
-             <input id="submit" type="submit" value="Login"/>
+             <button id="submit" class="button">Login</button>
          </form>
          <br/>
-         Don't Have an Account? <a href="#" onclick="return openRegister()">Sign up</a><br />
-         Employee Login? <a href="/console" >Login Here</a>
-         <br/>
+         <h5>Don't Have an Account? <a href="#" onclick="return openRegister()">Sign up</a></h5>
+         <h5><a href="/console" >Employee Login</a></h5>
        </div>
      </div>
    </div>
@@ -125,18 +126,49 @@
          <b id="reg-status"></b>
          <form id="register-form" onsubmit="return register();">
              Username:
-             <input type="text" name="uname" id="uname" placeholder="Username" required/>
+             <div class="input-control text" data-role="input">
+               <input type="text" name="uname" id="uname" placeholder="Username" minlength="7" maxlength="18" required/>
+               <button class="button helper-button clear"><span class="mif-cross"></span></button>
+            </div>
              Password:
-             <input type="password" name="upass" id="upass" placeholder="Password" required/>
+             <div class="input-control password" data-role="input">
+               <input type="password" name="upass" id="upass" placeholder="Password" minlength="7" maxlength="20" required/>
+               <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+             </div>
+
+
              Re-enter Password:
-             <input type="password" name="repass" id="repass" placeholder="Re enter Password" required/>
+             <div class="input-control password" data-role="input">
+               <input type="password" name="repass" id="repass" placeholder="Re enter Password" minlength="7" maxlength="20" required/>
+               <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+             </div>
 
              First Name:
-             <input type="text" name="fname" id="fname" placeholder="First Name" required/>
+            <div class="input-control text" data-role="input">
+              <input type="text" name="fname" id="fname" placeholder="First Name" pattern="^([A-Za-z]+[,.]?[ ]?|[A-Za-z]+['-]?)+$" minlength="2" maxlength="20" required/>
+              <button class="button helper-button clear"><span class="mif-cross"></span></button>
+           </div>
+
+
              Last Name:
-             <input type="text" name="lname" id="lname" placeholder="Last Name" required/>
+             <div class="input-control text" data-role="input">
+               <input type="text" id="lname" placeholder="Last Name" pattern="^([A-Za-z]+[,.]?[ ]?|[A-Za-z]+['-]?)+$" minlength="2" maxlength="20" required/>
+               <button class="button helper-button clear"><span class="mif-cross"></span></button>
+            </div>
+
+
              Contact Number:
-             <input type="number" name="c" id="contact" placeholder="Contact Number" required/>
+          <div class="input-control text" data-role="input">
+             <input type="text" id="contact" placeholder="Contact Number ex.09123456789" maxlength="11" minlength="11" min="1" max="99999999999" pattern="^(09|\+639)\d{9}$" required/>
+             <button class="button helper-button clear"><span class="mif-cross"></span></button>
+          </div>
+
+          Address:</br>
+          <div class="input-control textarea"
+              data-role="input" data-text-auto-resize="true" data-text-max-height="200" placeholder="Address">
+              <textarea id="xaddress" placeholder="Place your Delivery Address..." patter="d{1,5}\s\w.\s(\b\w*\b\s){1,2}\w*\."></textarea>
+          </div>
+
              </br>
              <input id="submit" type="submit" value="Register"/>
          </form>

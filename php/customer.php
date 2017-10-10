@@ -54,7 +54,7 @@ if($access == $access_web){
     $ver = $customer->checkUname($uname);
     $result = false;
     if($ver){
-      $result = $customer->createCustomerAccount($uname,$pass,$fname,$lname,$contact);
+      $result = $customer->createCustomerAccount($uname,$pass,$fname,$lname,$contact,$address);
     }
     echo json_encode(array("main" => $result,"uname"=>$ver));
     break;
@@ -120,7 +120,7 @@ if($access == $access_web){
     break;
     default:
     case 4:
-    $status = $customer->updateCustomerDetails($_SESSION['custid'],$fname,$lname,$contact,$image);
+    $status = $customer->updateCustomerDetails($_SESSION['custid'],$fname,$lname,$contact,$image,$address);
 
     echo json_encode(array(
     "main" => $status,

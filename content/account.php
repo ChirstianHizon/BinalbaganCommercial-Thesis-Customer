@@ -8,10 +8,10 @@
     <h4 class="title-sep">Orders Made</h4>
     <br/>
     <div id="table">
-      <table id="order_id" class="display" width="100%" cellspacing="0">
+      <table id="order_id" class="table sortable-markers-on-left cell-hovered border bordered" width="100%" cellspacing="0">
         <thead>
             <tr>
-                <th>Order ID</th>
+                <!-- <th>Order ID</th> -->
                 <th>Order Date</th>
                 <th>Quantity</th>
                 <th>Total</th>
@@ -24,6 +24,9 @@
         </tbody>
       </table>
     </div>
+    <br />
+    <br />
+    <br />
     <h4>Total Orders Made: <b id="order-total">0</b></h4>
   </div>
   <br/>
@@ -44,22 +47,38 @@
         </div>
         <div id="userdetails" class="col span_1_of_3">
           Account Details <br /><br />
-          <div id="image-container">
+          <!-- <div id="image-container">
             <div id="image">
               <img src="images/iphone.jpg" width="200px" height="200px"/>
               <input id="imageselector" class="imageselector" type="file" alt="Choose Product Image" onchange="getimage(event)" ><br>
             </div>
-          </div><br />
+
+          </div><br /> -->
+
           Username: <br />
-          <input id="uname" type="text" placeholder="Username" value="<?php echo $_SESSION['custname']; ?>" disabled/>
+          <div class="input-control text">
+            <input id="uname" type="text" placeholder="Username" value="<?php echo $_SESSION['custname']; ?>" disabled/>
+          </div>
+
           First Name:<br  />
-          <input id="ufname" type="text" placeholder="First Name" value="<?php echo $_SESSION['custfname']; ?>" disabled/>
+          <div class="input-control text">
+            <input id="ufname" type="text" placeholder="First Name" pattern="^(?=.*[a-zA-Z]).+$" minlength="2" maxlength="20" value="<?php echo $_SESSION['custfname']; ?>" disabled/>
+          </div>
+
           Last Name:<br  />
-          <input id="ulname" type="text" placeholder="Last Name" value="<?php echo $_SESSION['custlname']; ?>" disabled/>
+          <div class="input-control text">
+            <input id="ulname" type="text" placeholder="Last Name" pattern="^(?=.*[a-zA-Z]).+$" minlength="2" maxlength="20" value="<?php echo $_SESSION['custlname']; ?>" disabled/>
+          </div>
+
           Contact:<br  />
-          <input id="ucontact" type="number" placeholder="Contact Number" min="0" disabled/>
+          <div class="input-control text">
+            <input id="ucontact" type="text" placeholder="Contact Number" maxlength="11" minlength="11" min="1" max="99999999999" pattern="^(09|\+639)\d{9}$" disabled/>
+          </div>
+
           Address<br/>
-          <textarea id="uaddress" rows="5" placeholder="Address" disabled ></textarea>
+          <div class="input-control textarea">
+            <textarea id="uaddress" rows="5" placeholder="Address" disabled ></textarea>
+          </div>
           <button id="editprofile"> Edit Profile</button>
           <button id="cancel">Cancel</button>
           <button id="changepass">Change Password</button>
@@ -101,6 +120,47 @@
       </div>
 
 </footer>
+
+
+<div id="order-modal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span onclick="closeModal()" class="close">&times;</span>
+    <div class="modal-header">
+
+      <h2>Order</h2>
+    </div>
+    <div class="modal-body">
+      <b id="cart-status"></b>
+      <span>Order No: <b><span id="orderid"></span></b></span>
+      <br />
+      <span>Message: <b><span id="message"></span></b></span>
+      <br />
+      <span>Status: <b><span id="status"></span></b></span>
+      <br />
+      <table id="status_id" class="table cell-hovered border bordered" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody id="status-body">
+        </tbody>
+      </table>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      Total Amount:<b id="status-total"></b>
+      <br/>
+    </div>
+    <!-- <div class = "modal-footer">
+      <!-- <button id="checkout" onclick="openTypePicker()" class="button success"> Checkout </button> -->
+    </div> -->
+  </div>
+</div>
 
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
