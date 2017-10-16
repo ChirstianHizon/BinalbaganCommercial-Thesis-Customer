@@ -97,6 +97,7 @@ function addtocart(clickedElement) {
                        alert("Please Login to Use Services");
                      }else{
                        alert("Product Added to Cart");
+                       createPage();
                      }
                   },error: function(response) {
                     console.log(response);
