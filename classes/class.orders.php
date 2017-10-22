@@ -45,13 +45,15 @@ class Orders{
     SUM(tbl_order_list.prd_price *tbl_order_list.prd_qty)AS TOTAL,
     order_status AS OSTAT,
     order_type AS OTYPE,
-    order_datestamp AS ODATE
+    order_datestamp AS ODATE,
+    order_note AS NOTE
     FROM tbl_order
     INNER JOIN tbl_order_list ON tbl_order.order_id = tbl_order_list.order_id
     INNER JOIN tbl_product ON tbl_product.prd_id = tbl_order_list.prd_id
     WHERE cust_id = '$custid'
     GROUP BY tbl_order_list.prd_qty
     ORDER BY tbl_order.order_id DESC
+
     ";
 
     $result = mysqli_query($this->db,$sql);
@@ -80,6 +82,7 @@ class Orders{
     WHERE tbl_order.order_id = '$id'
     GROUP BY tbl_order_list.prd_qty
     ORDER BY tbl_order.order_id DESC
+    limit 1
     ";
 
     $result = mysqli_query($this->db,$sql);

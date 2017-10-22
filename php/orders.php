@@ -32,6 +32,7 @@ if($access == $access_web){
       $html="";
       $count=0;
       $total=0;
+      $note="";
       $list = $order->getOrderList($custid);
       if(!$list){echo json_encode(array("main" => "","total"=> 0,"cust"=>true));break;}
       foreach($list as $value){
@@ -49,7 +50,7 @@ if($access == $access_web){
           $stat= '<span style="color:red"><b>Declined</b></span>';
           break;
         case 100:
-          $stat = '<span style="color:blue"><b>Completed</b></span>';
+          $stat = '<span style="color:black"><b>Completed</b></span>';
           break;
       }
 
@@ -70,8 +71,9 @@ if($access == $access_web){
                 '<td>'.$otype.'</td>'.
                 '<td><button id="'.$value['ID'].'" onclick="return vieworder(this)" class="button small-button"> View</button></td>'.
             "</tr>";
+      $note = $value['NOTE'];
       }
-      echo json_encode(array("main" => $html,"count"=> $count,"total"=>$total,"cust"=>true));
+      echo json_encode(array("main" => $html,"count"=> $count,"total"=>$total,"cust"=>true,"note"=>$note));
       break;
       case 2:
       $html="";
@@ -82,7 +84,7 @@ if($access == $access_web){
       $list = $order->getSpecOrder($id);
       if(!$list){echo json_encode(array("main" => "","total"=> 0,"cust"=>true));break;}
       foreach($list as $value){
-        $message .= $value['NOTE'];
+        $message = $value['NOTE'];
         $total += $value['SUBTOTAL'];
         $html = $html.'<tr>'.
                   '<td>'.$value['NAME'].'</td>'.

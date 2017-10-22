@@ -54,6 +54,7 @@ function getUserOrders(){
       ordertb.destroy();
       document.getElementById("order-body").innerHTML=result.main;
       document.getElementById("order-total").innerHTML=" P "+addCommas(get2decimal(result.total));
+
       ordertb = $('#order_id').DataTable({
         "responsive": true,
         "bLengthChange": false,
@@ -310,6 +311,7 @@ function vieworder(clickedElement) {
       document.getElementById("status-body").innerHTML=result.main;
       document.getElementById("status-total").innerHTML=" P "+addCommas(get2decimal(result.total));
       document.getElementById("status").innerHTML= result.status;
+      document.getElementById("message").innerHTML=result.message;
       statustb = $('#status_id').DataTable({
         "responsive": true,
         "bLengthChange": false,

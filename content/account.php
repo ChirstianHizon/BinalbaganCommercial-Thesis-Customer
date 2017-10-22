@@ -27,7 +27,7 @@
     <br />
     <br />
     <br />
-    <h4>Total Orders Made: <b id="order-total">0</b></h4>
+    <h4 style="display:none;">Total Orders Made: <b id="order-total">0</b></h4>
   </div>
   <br/>
   <br/>
@@ -134,8 +134,6 @@
       <b id="cart-status"></b>
       <span>Order No: <b><span id="orderid"></span></b></span>
       <br />
-      <span>Message: <b><span id="message"></span></b></span>
-      <br />
       <span>Status: <b><span id="status"></span></b></span>
       <br />
       <table id="status_id" class="table cell-hovered border bordered" width="100%" cellspacing="0">
@@ -151,6 +149,12 @@
       </table>
       <br/>
       <br/>
+      <br/>
+      <span>Message:</span>
+      <br  />
+      <h6 style="color:black"><span id="message">
+      </span></h6>
+      <br />
       <br/>
       <br/>
       Total Amount:<b id="status-total"></b>
