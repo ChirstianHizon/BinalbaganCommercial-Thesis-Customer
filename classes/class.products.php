@@ -9,6 +9,19 @@ class Products {
     }
   }
 
+  public function getApprovedOrders($prdid){
+    $sql="SELECT
+          COALESCE(SUM(prd_qty),0) AS COUNT
+          FROM tbl_order
+          JOIN tbl_order_list ON tbl_order.order_id = tbl_order_list.order_id
+          WHERE order_status = '1' AND prd_id = '$prdid'
+          GROUP BY prd_id";
+    $result = mysqli_query($this->db,$sql);
+    $row = mysqli_fetch_assoc($result);
+    $result = $row['COUNT'];
+    return $result;
+  }
+
   public function createPage($row,$lastprd,$search){
     if($search == ""){
       $sql =
@@ -22,10 +35,13 @@ class Products {
           prd_level AS LMAX,
           prd_price AS PRICE,
           prd_image AS IMAGE,
-          cat_name AS CATEGORY
+          prd_status AS STATUS,
+          cat_name AS CATEGORY,
+          tbl_product.cat_id AS CATID
           FROM tbl_product
           INNER JOIN tbl_category ON tbl_product.cat_id = tbl_category.cat_id
           INNER JOIN (SELECT @row_number := 0 AS row_number)rnum
+          WHERE prd_status = '1'
         )tb_page
       ORDER BY ROW_NUM
       LIMIT $row OFFSET $lastprd";
@@ -41,7 +57,8 @@ class Products {
           prd_level AS LMAX,
           prd_price AS PRICE,
           prd_image AS IMAGE,
-          cat_name AS CATEGORY
+          cat_name AS CATEGORY,
+          tbl_product.cat_id AS CATID
           FROM tbl_product
           INNER JOIN tbl_category ON tbl_product.cat_id = tbl_category.cat_id
           INNER JOIN (SELECT @row_number := 0 AS row_number)rnum

@@ -37,9 +37,11 @@
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
   <link href="api/MetroUI/css/metro.css" rel="stylesheet">
+  <link href="api/MetroUI/css/metro-colors.css" rel="stylesheet">
+  <link href="api/MetroUI/css/metro-responsive.css" rel="stylesheet">
   <link href="api/MetroUI/css/metro-icons.css" rel="stylesheet">
 
-    <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="js/jquery-1.11.3.min.js"></script>
   <script src="api/MetroUI/js/metro.js"></script>
 
 
@@ -157,16 +159,19 @@
             </div>
 
 
-             Contact Number:
+             Mobile Number:
           <div class="input-control text" data-role="input">
              <input type="text" id="contact" placeholder="Contact Number ex.09123456789" maxlength="11" minlength="11" min="1" max="99999999999" pattern="^(09|\+639)\d{9}$" required/>
              <button class="button helper-button clear"><span class="mif-cross"></span></button>
           </div>
 
+          <div id="customer_map" class="map"></div>
+          <br  />
+
           Address:</br>
           <div class="input-control textarea"
-              data-role="input" data-text-auto-resize="true" data-text-max-height="200" placeholder="Address">
-              <textarea id="xaddress" placeholder="Place your Delivery Address..." patter="d{1,5}\s\w.\s(\b\w*\b\s){1,2}\w*\."></textarea>
+              data-role="input" data-text-auto-resize="true" data-text-max-height="200" placeholder="Address" >
+              <textarea id="xaddress" minlength="7" placeholder="Place your Delivery Address..." pattern="[a-zA-Z0-9\s]+" required></textarea>
           </div>
 
              </br>
@@ -234,6 +239,7 @@
 
    <script src="js/index.js"></script>
    <script type="text/javascript" src="api/DataTables/datatables.min.js"></script>
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5_KfF9P5eQzcC_fO4VWdgoumYFv7vAQg&callback=initializeMap"async defer></script>
 </body>
 
 </html>

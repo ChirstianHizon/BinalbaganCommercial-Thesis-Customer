@@ -3,7 +3,27 @@ $(function() {
     console.log('SCRIPT RUNNING');
 
     createPage();
+    generateProductCategory();
 });
+
+function generateProductCategory() {
+  var category = document.getElementById("category");
+  category.innerHTML = "";
+  $.ajax({
+    url: "php/category.php",
+    type: "POST",
+    async: true,
+    data: {
+      "type": 6
+    },
+    success: function(result) {
+      category.innerHTML = category.innerHTML = '<option value="ALL" selected>ALL</option>'+result;
+    },
+    error: function(response) {
+      console.log(response);
+    }
+  });
+}
 
 function createPage(){
   $.ajax({
@@ -28,6 +48,7 @@ function createPage(){
 
 function searchPage(){
   var search = document.getElementById("searchbar").value;
+  var category = document.getElementById("category").value;
   $.ajax({
     url: "php/products.php",
     type: "POST",
@@ -35,6 +56,7 @@ function searchPage(){
     dataType: "json",
     data: {
       "access":access,
+      "category":category,
       "search":search,
       "limit":10,
       "lastprd":0,
@@ -97,7 +119,10 @@ function addtocart(clickedElement) {
                        alert("Please Login to Use Services");
                      }else{
                        alert("Product Added to Cart");
+                       cartitemcount();
                        createPage();
+                       notifyAddCart();
+                       location.reload(); 
                      }
                   },error: function(response) {
                     console.log(response);
@@ -117,5 +142,14 @@ function addtocart(clickedElement) {
 
 
       }
+  });
+}
+
+
+function notifyAddCart() {
+  $.Notify({
+      caption: 'Notify title',
+      content: 'Product Added to cart',
+      icon: "<span class='mif-vpn-publ'></span>"
   });
 }

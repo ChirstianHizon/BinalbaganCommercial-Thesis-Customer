@@ -8,6 +8,7 @@ $id = (isset($_POST['id']) && $_POST['id'] != '') ? $_POST['id'] : '';
 $type = (isset($_POST['type']) && $_POST['type'] != '') ? $_POST['type'] : '';
 $access = (isset($_POST['access']) && $_POST['access'] != '') ? $_POST['access'] : '';
 
+$category = (isset($_POST['category']) && $_POST['category'] != '') ? $_POST['category'] : '';
 $search = (isset($_POST['search']) && $_POST['search'] != '') ? $_POST['search'] : '';
 $limit = (isset($_POST['limit']) && $_POST['limit'] != '') ? $_POST['limit'] : '';
 $lastprd = (isset($_POST['lastprd']) && $_POST['lastprd'] != '') ? $_POST['lastprd'] : '';
@@ -31,45 +32,17 @@ if($access == $access_web){
       break;
     }
     foreach($list as $value){
-      $desc = strlen($value['PDESC']) > 150 ? substr($value['PDESC'],0,150)."..." : $value['PDESC'];
+      $desc = strlen($value['PDESC']) > 150 ? substr($value['PDESC'],0,160)."..." : $value['PDESC'];
 
       $name = strlen($value['NAME']) > 45 ? substr($value['NAME'],0,45)."..." : $value['NAME'];
-      if($value['LMAX'] > 0){
-      $html = $html.'
 
-        <div class="col-sm-6 col-md-3">
-          <div class="thumbnail featured-product">
-            <a href="#">
-            <br/>
-              <img src="'.$value['IMAGE'].'" id="product-image" alt="">
-            </a>
-            <div class="caption">
-              <div  class="prod-view-title">
-              <h3>'.$name.'</h3>
-              </div>
-              <div  class="prod-view-desc">
-              <p>'.$desc.'</p>
-              </div>
-              <p class="price">₱ '.number_format($value['PRICE'],2).'</p>
-              <p class="quantity">Available:  <b>'.number_format($value['LMAX'],0).'</b></p>
+      // GETS APPROVED DEVLIVERY AND MINUS IT TO STOCK TO GET DISPLAY AMOUNT
+      $approved = $products->getApprovedOrders($value['ID']);
+      $max = $value['LMAX'] - $approved;
+      $xcat =$value['CATID'];
 
-              <!-- Input Group -->
-              <div class="input-group">
-                <input min="1" id="val-'.$value['ID'].'" max="'.$value['LMAX'].'" type="number" class="form-control" value="1" required>
-                <span class="input-group-btn">
-                  <button id="'.$value['ID'].'" onclick="addtocart(this)"class="btn btn-primary" type="button">
-                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-                    Add to Cart
-                  </button>
-                </span>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        ';
-      }else{
+      if( $category == "ALL" || $category == ""){
+        if($max >= 0){
         $html = $html.'
 
           <div class="col-sm-6 col-md-3">
@@ -80,20 +53,115 @@ if($access == $access_web){
               </a>
               <div class="caption">
                 <div  class="prod-view-title">
-                <h3>'.$value['NAME'].'</h3>
+                <h3>'.$name.'</h3>
                 </div>
                 <div  class="prod-view-desc">
                 <p>'.$desc.'</p>
                 </div>
                 <p class="price">₱ '.number_format($value['PRICE'],2).'</p>
-                <p class="quantity" style="color:red;"><b>Not Available</b></p>
+                <p class="quantity">Available:  <b>'.number_format($max,0).'</b></p>
+
+                <!-- Input Group -->
+                <div class="input-group">
+                  <input min="1" id="val-'.$value['ID'].'" max="'.$max.'" type="number" class="form-control" value="1" required>
+                  <span class="input-group-btn">
+                    <button id="'.$value['ID'].'" onclick="addtocart(this)"class="btn btn-primary" type="button">
+                      <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                      Add to Cart
+                    </button>
+                  </span>
+                </div>
+
               </div>
             </div>
           </div>
 
           ';
-      }
+        }else{
+          $html = $html.'
+            <div class="col-sm-6 col-md-3">
+              <div class="thumbnail featured-product">
+                <a href="#">
+                <br/>
+                  <img src="'.$value['IMAGE'].'" id="product-image" alt="">
+                </a>
+                <div class="caption">
+                  <div  class="prod-view-title">
+                  <h3>'.$value['NAME'].'</h3>
+                  </div>
+                  <div  class="prod-view-desc">
+                  <p>'.$desc.'</p>
+                  </div>
+                  <p class="price">₱ '.number_format($value['PRICE'],2).'</p>
+                  <p class="quantity" style="color:red;"><b>Not Available</b></p>
+                </div>
+              </div>
+            </div>
 
+            ';
+        }
+      }else if( $xcat == $category){
+
+        if($value['LMAX'] > 0){
+        $html = $html.'
+
+          <div class="col-sm-6 col-md-3">
+            <div class="thumbnail featured-product">
+              <a href="#">
+              <br/>
+                <img src="'.$value['IMAGE'].'" id="product-image" alt="">
+              </a>
+              <div class="caption">
+                <div  class="prod-view-title">
+                <h3>'.$name.'</h3>
+                </div>
+                <div  class="prod-view-desc">
+                <p>'.$desc.'</p>
+                </div>
+                <p class="price">₱ '.number_format($value['PRICE'],2).'</p>
+                <p class="quantity">Available:  <b>'.number_format($max,0).'</b></p>
+
+                <!-- Input Group -->
+                <div class="input-group">
+                  <input min="1" id="val-'.$value['ID'].'" max="'.$max.'" type="number" class="form-control" value="1" required>
+                  <span class="input-group-btn">
+                    <button id="'.$value['ID'].'" onclick="addtocart(this)"class="btn btn-primary" type="button">
+                      <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                      Add to Cart
+                    </button>
+                  </span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          ';
+        }else{
+          $html = $html.'
+
+            <div class="col-sm-6 col-md-3">
+              <div class="thumbnail featured-product">
+                <a href="#">
+                <br/>
+                  <img src="'.$value['IMAGE'].'" id="product-image" alt="">
+                </a>
+                <div class="caption">
+                  <div  class="prod-view-title">
+                  <h3>'.$value['NAME'].'</h3>
+                  </div>
+                  <div  class="prod-view-desc">
+                  <p>'.$desc.'</p>
+                  </div>
+                  <p class="price">₱ '.number_format($value['PRICE'],2).'</p>
+                  <p class="quantity" style="color:red;"><b>Not Available</b></p>
+                </div>
+              </div>
+            </div>
+
+            ';
+        }
+      }
     }
     echo json_encode(array("main" => $html,"COUNT"=>0));
     break;

@@ -90,6 +90,17 @@ class Customer {
     }
   }
 
+  public function getSpecCustomerAddress($id){
+    $sql = "SELECT *
+            FROM tbl_address ad
+            WHERE ad.cust_id = '$id'
+    ";
+    $result = mysqli_query($this->db,$sql) or die(mysqli_error() . $sql);
+    $row = mysqli_fetch_assoc($result);
+    $result = $row['add_name'];
+
+  }
+
   public function updateCustomerDetails($id,$fname,$lname,$contact,$image,$address){
 
     $sql = "UPDATE tbl_customer SET

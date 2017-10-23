@@ -77,11 +77,11 @@
 
           Address<br/>
           <div class="input-control textarea">
-            <textarea id="uaddress" rows="5" placeholder="Address" disabled ></textarea>
+            <textarea id="uaddress" rows="5" placeholder="Address" pattern="[a-zA-Z0-9\s]+" disabled minlength="7" ></textarea>
           </div>
           <button id="editprofile"> Edit Profile</button>
           <button id="cancel">Cancel</button>
-          <button id="changepass">Change Password</button>
+          <!-- <button id="changepass" >Change Password</button> -->
         </div>
         <div class="col span_1_of_3">
 
@@ -150,11 +150,19 @@
       <br/>
       <br/>
       <br/>
+      <div id="messagetitle">
       <span>Message:</span>
       <br  />
       <h6 style="color:black"><span id="message">
       </span></h6>
+      </div>
       <br />
+      <div id="addresstitle">
+      <span>Address:</span>
+      <br  />
+      <h6 style="color:black"><span id="setaddress">
+      </span></h6>
+    </div>
       <br/>
       <br/>
       Total Amount:<b id="status-total"></b>
@@ -174,5 +182,3 @@
 <script src="api\ResizeSensor\ResizeSensor.js"></script>
 
 <script src="js/account.js"></script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5_KfF9P5eQzcC_fO4VWdgoumYFv7vAQg&callback=initializeMap"async defer></script>

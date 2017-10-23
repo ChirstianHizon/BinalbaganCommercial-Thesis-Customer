@@ -14,8 +14,19 @@ class Orders{
   }
 
   public function addOrder($custid,$order){
-    $sql = "INSERT INTO tbl_order(order_datestamp,order_timestamp,cust_id,order_type)
-    VALUES(NOW(),NOW(),'$custid','$order')";
+    if($order == '1'){
+      $sql = "SELECT *
+              FROM tbl_address ad
+              WHERE ad.cust_id = '$custid'
+      ";
+      $result = mysqli_query($this->db,$sql) or die(mysqli_error() . $sql);
+      $row = mysqli_fetch_assoc($result);
+      $address = $row['add_name'];
+    }else{
+      $address = "N/A";
+    }
+    $sql = "INSERT INTO tbl_order(order_datestamp,order_timestamp,cust_id,order_type,order_address)
+    VALUES(NOW(),NOW(),'$custid','$order','$address')";
 
     $result = mysqli_query($this->db,$sql) or die(mysqli_error() . $sql);
     if($result == 1){
@@ -24,6 +35,7 @@ class Orders{
     }
     return $result;
   }
+
 
   public function addOrderList($orderid,$prdid,$prdqty){
     $price= 0;
@@ -41,7 +53,7 @@ class Orders{
   public function getOrderList($custid) {
     $sql = "SELECT
     tbl_order.order_id AS ID,
-    SUM(prd_qty) AS QTY,
+    SUM(tbl_order_list.prd_qty) AS QTY,
     SUM(tbl_order_list.prd_price *tbl_order_list.prd_qty)AS TOTAL,
     order_status AS OSTAT,
     order_type AS OTYPE,
@@ -49,10 +61,8 @@ class Orders{
     order_note AS NOTE
     FROM tbl_order
     INNER JOIN tbl_order_list ON tbl_order.order_id = tbl_order_list.order_id
-    INNER JOIN tbl_product ON tbl_product.prd_id = tbl_order_list.prd_id
     WHERE cust_id = '$custid'
-    GROUP BY tbl_order_list.prd_qty
-    ORDER BY tbl_order.order_id DESC
+    GROUP BY tbl_order.order_id
 
     ";
 
@@ -75,14 +85,15 @@ class Orders{
     tbl_product.prd_name AS NAME,
     SUM(tbl_order_list.prd_qty * tbl_order_list.prd_price) AS SUBTOTAL,
     tbl_order.order_note AS NOTE,
-    tbl_order.order_status AS STATUS
+    tbl_order.order_status AS STATUS,
+    tbl_order.order_address AS ADDRESS
     FROM tbl_order_list
     INNER JOIN tbl_order ON tbl_order.order_id = tbl_order_list.order_id
     INNER JOIN tbl_product ON tbl_product.prd_id = tbl_order_list.prd_id
     WHERE tbl_order.order_id = '$id'
     GROUP BY tbl_order_list.prd_qty
     ORDER BY tbl_order.order_id DESC
-    limit 1
+
     ";
 
     $result = mysqli_query($this->db,$sql);

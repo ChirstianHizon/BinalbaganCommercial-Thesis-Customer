@@ -35,11 +35,12 @@
 	min-height: 140px;
 }
 
-.input-control.text.big-input{
+.input-control.text.big-input,
+.input-control.select.big-input{
 	width: 100%;
-
 }
-.input-control.text.big-input button{
+.input-control.text.big-input button,
+.input-control.select.big-input button{
 	/*padding: 0;*/
 	border: none;
 	background: none;
@@ -135,7 +136,7 @@ body{
 }
 
 .thumbnail.featured-product{
-	min-height: 490px;
+	min-height: 500px;
 }
 
 .input-control.text,

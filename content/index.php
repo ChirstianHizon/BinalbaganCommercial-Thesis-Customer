@@ -26,7 +26,7 @@
                         <a href="index.php?mod=products">Products</a>
                     </li>
                     <li>
-                        <a href="#" onclick="return openMyCart();"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart</a>
+                        <a href="#" onclick="return openMyCart();"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart (<span id="cartcount">0</span>)</a>
                     </li>
                     <script>var page ="?mod=products"</script>
                     <?php

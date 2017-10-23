@@ -25,7 +25,7 @@
         </li>
         <!-- CART USE MODAL TO SHOW PRODUCTS -->
         <li>
-            <a href="#" onclick="return openMyCart();"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart</a>
+            <a href="#" onclick="return openMyCart();"><span class="glyphicon glyphicon-shopping-cart"></span> My Cart (<span id="cartcount">0</span>)</a>
         </li>
         <script>var page =""</script>
         <?php

@@ -28,6 +28,15 @@
         <input id="searchbar" onkeyup="searchPage()"  type="text" placeholder="Enter a Product">
         <button onclick="searchPage()" class="button"><span class="mif-search"></span></button>
     </div>
+
+
+    <div class="input-control select big-input" data-role="input">
+      <select id="category" placeholder="optional"required>
+      </select>
+      <button class="button"><span class="mif-list"></span></button>
+    </div>
+
+
     <br />
     <br />
     <br />

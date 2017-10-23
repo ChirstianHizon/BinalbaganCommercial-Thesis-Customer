@@ -81,6 +81,17 @@ if($access == $access_web){
         $result = $cart->deleteCart($id,$custid);
         echo json_encode(array("main" => $result,"cust"=>$custid));
       break;
+      case 5:
+        $list =  $cart->getCart($custid);
+        $count = 0;
+        if(is_array($list)){
+          foreach($list as $value){
+            $count++;
+          }
+        }
+
+        echo json_encode(array("size" =>$count));
+      break;
 
 
 

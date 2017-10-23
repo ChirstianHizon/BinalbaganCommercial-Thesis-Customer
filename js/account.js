@@ -293,7 +293,8 @@ function vieworder(clickedElement) {
   var id = clickedElement.id;
   modal = document.getElementById('order-modal');
   openModal();
-
+  // show('messagetitle');
+  // show('addresstitle');
   document.getElementById('orderid').innerHTML = id;
 
   $.ajax({
@@ -312,6 +313,14 @@ function vieworder(clickedElement) {
       document.getElementById("status-total").innerHTML=" P "+addCommas(get2decimal(result.total));
       document.getElementById("status").innerHTML= result.status;
       document.getElementById("message").innerHTML=result.message;
+      document.getElementById("setaddress").innerHTML=result.address;
+      if(result.message == ""){
+        // show('messagetitle');
+
+      }
+      if(result.address == "N/A"){
+        // show('addresstitle');
+      }
       statustb = $('#status_id').DataTable({
         "responsive": true,
         "bLengthChange": false,
