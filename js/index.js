@@ -1,5 +1,3 @@
-var custlat = 10.194262,custlng = 122.862165;
-var isonEdit = false;
 var modal,carttb;
 $(document).ready(function(){
   document.getElementById("body").style.display = "block";
@@ -270,106 +268,7 @@ function Checkout(type){
 
 
 
-var directionsDisplay,directionsService,map,infoWindow,geocoder,gmarker = [],currentadd;
-// -------------------------------- MAPS API ------------------------------------------//
-function initializeMap() {
-  var marker;
-  // directionsDisplay = new google.maps.DirectionsRenderer();
-  // directionsService = new google.maps.DirectionsService();
-  var map = new google.maps.Map(document.getElementById('customer_map'), {
-    zoom: 10,
-    center: new google.maps.LatLng(custlat, custlng),
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  });
-  // directionsDisplay.setMap(map);
-  infoWindow = new google.maps.InfoWindow();
-  geocoder = new google.maps.Geocoder();
 
-  // Try HTML5 geolocation.
-  if (navigator.geolocation && isonEdit) {
-    console.log("Geolocation is Enabled");
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-
-      infoWindow.setPosition(pos);
-      infoWindow.setContent('Current Location.');
-      infoWindow.open(map);
-      map.setCenter(pos);
-
-      // geocoder.geocode({'location': pos}, function(results, status) {
-      //   if (status === 'OK') {
-      //     if (results[0]) {
-      //       map.setZoom(17);
-      //       currentadd = results[0].formatted_address;
-      //       infoWindow.setContent("Current Location: "+results[0].formatted_address);
-      //       document.getElementById("uaddress").value = results[0].formatted_address;
-      //       console.log(results[0].formatted_address);
-      //       // infoWindow.open(map, marker);
-      //     } else {
-      //       window.alert('No results found');
-      //     }
-      //   } else {
-      //     window.alert('Geocoder failed due to: ' + status);
-      //   }
-      // });
-    }, function() {
-      handleLocationError(true, infoWindow, map.getCenter());
-    });
-  } else {
-    //Broswer is NOT on Edit MODE
-    if(isonEdit){
-      // Browser doesn't support Geolocation
-      alert('Your browser doesn\'t support geolocation.');
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
-  }
-
-  google.maps.event.addListener(map, 'click', function(event) {
-
-      if(isonEdit){
-        removeMarkers();
-        map.setZoom(17);
-        var marker = new google.maps.Marker({
-          position: event.latLng,
-          map: map
-        });
-        gmarker.push(marker);
-
-        geocoder.geocode({'location': event.latLng}, function(results, status) {
-          if (status === 'OK') {
-            if (results[0]) {
-
-              infoWindow.setContent("New Address: "+results[0].formatted_address);
-              document.getElementById("uaddress").value = results[0].formatted_address;
-              console.log(results[0].formatted_address);
-              infoWindow.open(map, marker);
-            } else {
-              window.alert('No results found');
-            }
-          } else {
-            window.alert('Geocoder failed due to: ' + status);
-          }
-        });
-      }
-  });
-}
-
-function removeMarkers(){
-    for(i=0; i<gmarker.length; i++){
-        gmarker[i].setMap(null);
-    }
-}
-
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(browserHasGeolocation ?
-                        'Error: The Geolocation service failed.' :
-                        'Error: Your browser doesn\'t support geolocation.');
-  infoWindow.open(map);
-}
 
 
 

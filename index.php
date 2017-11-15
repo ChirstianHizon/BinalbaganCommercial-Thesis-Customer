@@ -129,39 +129,39 @@
          <form id="register-form" onsubmit="return register();">
              Username:
              <div class="input-control text" data-role="input">
-               <input type="text" name="uname" id="uname" placeholder="Username" minlength="7" maxlength="18" required/>
+               <input type="text" name="uname" id="uname" placeholder="Username" minlength="7" pattern="[a-zA-Z0-9\s]+" title=" must be contain both Number and Letters" maxlength="18" required/>
                <button class="button helper-button clear"><span class="mif-cross"></span></button>
             </div>
              Password:
              <div class="input-control password" data-role="input">
-               <input type="password" name="upass" id="upass" placeholder="Password" minlength="7" maxlength="20" required/>
+               <input type="password" name="upass" pattern="[a-zA-Z0-9\s]+" id="upass" placeholder="Password" minlength="7"  title=" must be contain both Number and Letters" maxlength="20" required/>
                <button class="button helper-button reveal"><span class="mif-looks"></span></button>
              </div>
 
 
              Re-enter Password:
              <div class="input-control password" data-role="input">
-               <input type="password" name="repass" id="repass" placeholder="Re enter Password" minlength="7" maxlength="20" required/>
+               <input type="password" name="repass" pattern="[a-zA-Z0-9\s]+" id="repass" placeholder="Re enter Password" minlength="7" title=" must be contain both Number and Letters" maxlength="20" required/>
                <button class="button helper-button reveal"><span class="mif-looks"></span></button>
              </div>
 
              First Name:
             <div class="input-control text" data-role="input">
-              <input type="text" name="fname" id="fname" placeholder="First Name" pattern="^([A-Za-z]+[,.]?[ ]?|[A-Za-z]+['-]?)+$" minlength="2" maxlength="20" required/>
+              <input type="text" name="fname" id="fname" placeholder="First Name" pattern="^([A-Za-z]+[,.]?[ ]?|[A-Za-z]+['-]?)+$" title=" must be contain letters ONLY" minlength="2" maxlength="20" required/>
               <button class="button helper-button clear"><span class="mif-cross"></span></button>
            </div>
 
 
              Last Name:
              <div class="input-control text" data-role="input">
-               <input type="text" id="lname" placeholder="Last Name" pattern="^([A-Za-z]+[,.]?[ ]?|[A-Za-z]+['-]?)+$" minlength="2" maxlength="20" required/>
+               <input type="text" id="lname" placeholder="Last Name" pattern="^([A-Za-z]+[,.]?[ ]?|[A-Za-z]+['-]?)+$" title=" must be contain letters ONLY" minlength="2" maxlength="20" required/>
                <button class="button helper-button clear"><span class="mif-cross"></span></button>
             </div>
 
 
              Mobile Number:
           <div class="input-control text" data-role="input">
-             <input type="text" id="contact" placeholder="Contact Number ex.09123456789" maxlength="11" minlength="11" min="1" max="99999999999" pattern="^(09|\+639)\d{9}$" required/>
+             <input type="text" id="contact" placeholder="must start with 09" maxlength="11" minlength="11" min="1" max="99999999999" title="must start with 09"pattern="^(09|\+639)\d{9}$" required/>
              <button class="button helper-button clear"><span class="mif-cross"></span></button>
           </div>
 
@@ -171,7 +171,7 @@
           Address:</br>
           <div class="input-control textarea"
               data-role="input" data-text-auto-resize="true" data-text-max-height="200" placeholder="Address" >
-              <textarea id="xaddress" minlength="7" placeholder="Place your Delivery Address..." pattern="[a-zA-Z0-9\s]+" required></textarea>
+              <textarea id="xaddress" minlength="7" placeholder="Place your Delivery Address..." pattern="[a-zA-Z0-9\s]+" title=" must be contain both Number and Letters" required></textarea>
           </div>
 
              </br>
@@ -239,7 +239,7 @@
 
    <script src="js/index.js"></script>
    <script type="text/javascript" src="api/DataTables/datatables.min.js"></script>
-   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5_KfF9P5eQzcC_fO4VWdgoumYFv7vAQg&callback=initializeMap"async defer></script>
+   <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5_KfF9P5eQzcC_fO4VWdgoumYFv7vAQg&callback=initializeMap"async defer></script> -->
 </body>
 
 </html>
